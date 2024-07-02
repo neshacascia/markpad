@@ -1,0 +1,13 @@
+# Ignore virtual environment directories
+bin/
+include/
+lib/
+pyvenv.cfg
+
+venv/
+__pycache__/
+*.pyc
+*.pyo
+instance/
+.env
+.DS_Store
