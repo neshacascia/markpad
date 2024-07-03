@@ -35,7 +35,7 @@ export default function AuthPage(props) {
       });
       console.log(res);
 
-      if (authValue === 'login' && res.status === 200) {
+      if (res.status === 200 || res.status === 201) {
         navigate('/dashboard');
       }
     } catch (err) {
