@@ -14,8 +14,10 @@ def post_signup():
     new_user.set_password(data['password'])
     db.session.add(new_user)
     db.session.commit()
+
+    access_token = create_access_token(identity=new_user.id)
     
-    return jsonify(new_user.to_dict()), 201
+    return jsonify({'access_token': access_token, 'msg': 'Account created successfully.'}), 201
 
 def post_login():
     data = request.get_json()
