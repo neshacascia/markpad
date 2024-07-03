@@ -1,12 +1,12 @@
-from flask import request, jsonify
-from flask_jwt_extended import create_access_token
+from flask import request, jsonify, make_response
+from flask_jwt_extended import create_access_token, set_access_cookies
 from ..models.user import User
 from ..extensions import db
 
 def post_signup():
     data = request.get_json()
     if User.query.filter_by(email=data['email']).first():
-        return jsonify({'msg': 'Account with that already exists.'}), 409
+        return jsonify({'msg': 'Account with that email already exists.'}), 409
     
     new_user = User(
         email=data['email']
@@ -16,13 +16,18 @@ def post_signup():
     db.session.commit()
 
     access_token = create_access_token(identity=new_user.id)
+    response = make_response(jsonify({'msg': 'Account created successfully.'}), 201)
+    set_access_cookies(response, access_token)
     
-    return jsonify({'access_token': access_token, 'msg': 'Account created successfully.'}), 201
+    return response
 
 def post_login():
     data = request.get_json()
     user = User.query.filter_by(email=data['email']).first()
     if user and user.check_password(data['password']):
         access_token = create_access_token(identity=user.id)
-        return jsonify({'access_token': access_token, 'msg': 'Success! You are logged in.'}), 200
+        response = make_response(jsonify({'msg': 'Success! You are logged in.'}), 200)
+        set_access_cookies(response, access_token)
+
+        return response
     return jsonify({'msg': 'Invalid credentials'}), 401
