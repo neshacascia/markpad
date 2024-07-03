@@ -17,8 +17,8 @@ def create_app():
         db.create_all()
         register_routes(app)
     
-    # enable CORS
-    CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
+    # enable CORS with credentials
+    CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}}, supports_credentials=True)
 
     # serve the React static files
     @app.route('/', defaults={'path': ''})
