@@ -36,7 +36,7 @@ export default function AuthPage(props) {
       console.log(res);
 
       if (res.status === 200 || res.status === 201) {
-        navigate('/dashboard');
+        navigate('/document');
       }
     } catch (err) {
       console.error(err);
