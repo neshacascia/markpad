@@ -29,10 +29,19 @@ export default function AuthPage(props) {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`/api/auth/${authValue}`, {
-        email: formInputs.email,
-        password: formInputs.password,
-      });
+      const res = await axios.post(
+        `/api/auth/${authValue}`,
+        {
+          email: formInputs.email,
+          password: formInputs.password,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       console.log(res);
 
       if (res.status === 200 || res.status === 201) {
