@@ -1,64 +1,25 @@
-import { useState, useEffect } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Root from '@components/Root';
+import HomePage from './pages/HomePage';
+import AuthPage from './pages/AuthPage';
 import './App.css';
-import axios from 'axios';
+import Dashboard from './pages/Dashboard';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: 'login', element: <AuthPage /> },
+      { path: 'signup', element: <AuthPage /> },
+      { path: 'dashboard', element: <Dashboard /> },
+    ],
+  },
+]);
 
 function App() {
-  const [users, setUsers] = useState([]);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-
-  useEffect(() => {
-    async function loadUsers() {
-      try {
-        const res = await axios.get('/api/users');
-        console.log(res);
-        setUsers(res.data);
-      } catch (err) {
-        console.error('There was an error fetching the users!', err);
-      }
-    }
-    loadUsers();
-  }, []);
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-      const res = await axios.post('/api/users', { firstName, lastName });
-      setUsers([...users, res.data]);
-      setFirstName('');
-      setLastName('');
-    } catch (err) {
-      console.error('There was an error creating the user!', err);
-    }
-  }
-
-  return (
-    <div>
-      <h1>Users</h1>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>
-            {user.first_name} {user.last_name}
-          </li>
-        ))}
-      </ul>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="First Name"
-          value={firstName}
-          onChange={e => setFirstName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Last Name"
-          value={lastName}
-          onChange={e => setLastName(e.target.value)}
-        />
-        <button type="submit">Add User</button>
-      </form>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
