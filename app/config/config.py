@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from datetime import timedelta
 
 # load environment variables from .env file
 load_dotenv()
@@ -13,3 +14,4 @@ class Config:
     JWT_COOKIE_CSRF_PROTECT = True  
     JWT_COOKIE_SAMESITE = 'None'     
     JWT_COOKIE_SECURE = True   
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=4)
