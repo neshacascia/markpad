@@ -1,5 +1,5 @@
 from flask import request, jsonify, make_response
-from flask_jwt_extended import create_access_token, set_access_cookies
+from flask_jwt_extended import create_access_token, set_access_cookies, unset_jwt_cookies
 from ..models.user import User
 from ..extensions import db
 
@@ -31,3 +31,9 @@ def post_login():
 
         return response
     return jsonify({'msg': 'Invalid credentials'}), 401
+
+def logout():
+    response = make_response(jsonify({'msg': 'You are successfully logged out.'}), 200)
+    unset_jwt_cookies(response)
+
+    return response
