@@ -77,6 +77,8 @@ export default function AuthPage(props) {
   const confirmPasswordNotValid =
     !confirmPasswordLengthValid && formTouched.confirmPassword;
 
+  const passwordsMatch = formInputs.password === formInputs.confirmPassword;
+
   const [errorMessages, setErrorMessages] = useState({});
 
   async function submitHandler(e) {
@@ -95,6 +97,11 @@ export default function AuthPage(props) {
     if (confirmPasswordNotValid || !formTouched.confirmPassword) {
       newErrors.confirmPassword =
         'Password must have a minimum of 8 characters.';
+    }
+
+    if (!passwordsMatch) {
+      newErrors.passwordsMatch =
+        'Uh oh! The passwords you entered do not match.';
     }
 
     if (Object.keys(newErrors).length > 0) {
