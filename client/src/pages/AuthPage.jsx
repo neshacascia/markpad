@@ -145,6 +145,16 @@ export default function AuthPage(props) {
         }
       } catch (err) {
         console.error(err);
+
+        if (err.response.status === 409) {
+          newErrors.email = err.response.data.msg;
+          setErrorMessages(newErrors);
+        }
+
+        if (err.response.status === 401) {
+          newErrors.password = err.response.data.msg;
+          setErrorMessages(newErrors);
+        }
       }
     }
   }
