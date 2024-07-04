@@ -77,30 +77,58 @@ export default function AuthPage(props) {
   const confirmPasswordNotValid =
     !confirmPasswordLengthValid && formTouched.confirmPassword;
 
+  const [errorMessages, setErrorMessages] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
   async function submitHandler(e) {
     e.preventDefault();
 
-    try {
-      const res = await axios.post(
-        `/api/auth/${authValue}`,
-        {
-          email: formInputs.email,
-          password: formInputs.password,
-        },
-        {
-          withCredentials: true,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      console.log(res);
+    const newErrors = {};
 
-      if (res.status === 200 || res.status === 201) {
-        navigate('/document');
+    if (emailNotValid) {
+      newErrors.email = 'Please enter a valid email.';
+    }
+
+    if (passwordNotValid) {
+      newErrors.password = 'Password must have a minimum of 8 characters.';
+    }
+
+    if (confirmPasswordNotValid) {
+      newErrors.confirmPassword =
+        'Password must have a minimum of 8 characters.';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrorMessages(prevState => ({
+        ...prevState,
+        ...newErrors,
+      }));
+    } else {
+      try {
+        const res = await axios.post(
+          `/api/auth/${authValue}`,
+          {
+            email: formInputs.email,
+            password: formInputs.password,
+          },
+          {
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        console.log(res);
+
+        if (res.status === 200 || res.status === 201) {
+          navigate('/document');
+        }
+      } catch (err) {
+        console.error(err);
       }
-    } catch (err) {
-      console.error(err);
     }
   }
 
