@@ -77,35 +77,28 @@ export default function AuthPage(props) {
   const confirmPasswordNotValid =
     !confirmPasswordLengthValid && formTouched.confirmPassword;
 
-  const [errorMessages, setErrorMessages] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
+  const [errorMessages, setErrorMessages] = useState({});
 
   async function submitHandler(e) {
     e.preventDefault();
 
     const newErrors = {};
 
-    if (emailNotValid) {
+    if (emailNotValid || !formTouched.email) {
       newErrors.email = 'Please enter a valid email.';
     }
 
-    if (passwordNotValid) {
+    if (passwordNotValid || !formTouched.password) {
       newErrors.password = 'Password must have a minimum of 8 characters.';
     }
 
-    if (confirmPasswordNotValid) {
+    if (confirmPasswordNotValid || !formTouched.confirmPassword) {
       newErrors.confirmPassword =
         'Password must have a minimum of 8 characters.';
     }
 
     if (Object.keys(newErrors).length > 0) {
-      setErrorMessages(prevState => ({
-        ...prevState,
-        ...newErrors,
-      }));
+      setErrorMessages(newErrors);
     } else {
       try {
         const res = await axios.post(
@@ -131,7 +124,7 @@ export default function AuthPage(props) {
       }
     }
   }
-
+  console.log(errorMessages);
   return (
     <section>
       <div>
@@ -175,6 +168,9 @@ export default function AuthPage(props) {
               )}
             </label>
           )}
+          {formTouched.password &&
+            formTouched.confirmPassword &&
+            !passwordsMatch && <p>{errorMessages.passwordsMatch}</p>}
           <button type="submit">
             {authValue === 'login' ? 'Login' : 'Signup'}
           </button>
