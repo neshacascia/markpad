@@ -147,6 +147,7 @@ export default function AuthPage(props) {
               onChange={handleInputChange}
               onBlur={handleInputTouched}
             />
+            {errorMessages.email && <p>{errorMessages.email}</p>}
           </label>
           <label>
             Password
@@ -157,6 +158,7 @@ export default function AuthPage(props) {
               onChange={handleInputChange}
               onBlur={handleInputTouched}
             />
+            {errorMessages.password && <p>{errorMessages.password}</p>}
           </label>
           {authValue === 'signup' && (
             <label>
@@ -168,6 +170,9 @@ export default function AuthPage(props) {
                 onChange={handleInputChange}
                 onBlur={handleInputTouched}
               />
+              {errorMessages.confirmPassword && (
+                <p>{errorMessages.confirmPassword}</p>
+              )}
             </label>
           )}
           <button type="submit">
