@@ -42,6 +42,41 @@ export default function AuthPage(props) {
     });
   }
 
+  const validationSchema = {
+    email: value => value.trim() !== '' && value.includes('@'),
+    password: value => value.trim() !== '' && value.length >= 8,
+    confirmPassword: (value, formInputs) => value === formInputs.password,
+  };
+
+  function validateField(name, value, formInputs) {
+    return validationSchema[name](value, formInputs);
+  }
+
+  function isFieldNotValid(name, value, formInputs, touched) {
+    return !validateField(name, value, formInputs) && touched[name];
+  }
+
+  const emailNotValid = isFieldNotValid(
+    'email',
+    formInputs.email,
+    formInputs,
+    formTouched
+  );
+
+  const passwordNotValid = isFieldNotValid(
+    'password',
+    formInputs.password,
+    formInputs,
+    formTouched
+  );
+
+  const confirmPasswordLengthValid =
+    formInputs.confirmPassword.trim() !== '' &&
+    formInputs.confirmPassword.length >= 8;
+
+  const confirmPasswordNotValid =
+    !confirmPasswordLengthValid && formTouched.confirmPassword;
+
   async function submitHandler(e) {
     e.preventDefault();
 
