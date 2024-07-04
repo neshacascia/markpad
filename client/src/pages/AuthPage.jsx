@@ -3,6 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 export default function AuthPage(props) {
   const authValue = localStorage.getItem('authValue');
   const { storeAuthValue } = useContext(AuthContext);
@@ -81,6 +84,20 @@ export default function AuthPage(props) {
 
   const [errorMessages, setErrorMessages] = useState({});
 
+  const [passwordVisibility, setPasswordVisibility] = useState({
+    password: false,
+    confirmPassword: false,
+  });
+
+  function handleTogglePassword(name) {
+    setPasswordVisibility(prevState => {
+      return {
+        ...prevState,
+        [name]: !prevState[name],
+      };
+    });
+  }
+
   async function submitHandler(e) {
     e.preventDefault();
 
@@ -131,7 +148,7 @@ export default function AuthPage(props) {
       }
     }
   }
-  console.log(errorMessages);
+
   return (
     <section>
       <div>
@@ -151,25 +168,39 @@ export default function AuthPage(props) {
           </label>
           <label>
             Password
-            <input
-              type="password"
-              name="password"
-              placeholder="••••••••"
-              onChange={handleInputChange}
-              onBlur={handleInputTouched}
-            />
+            <div>
+              <input
+                type={passwordVisibility.password ? 'text' : 'password'}
+                name="password"
+                placeholder="••••••••"
+                onChange={handleInputChange}
+                onBlur={handleInputTouched}
+              />
+              <FontAwesomeIcon
+                icon={passwordVisibility.password ? faEyeSlash : faEye}
+                onClick={() => handleTogglePassword('password')}
+              />
+            </div>
             {errorMessages.password && <p>{errorMessages.password}</p>}
           </label>
           {authValue === 'signup' && (
             <label>
               Confirm Password
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="••••••••"
-                onChange={handleInputChange}
-                onBlur={handleInputTouched}
-              />
+              <div>
+                <input
+                  type={
+                    passwordVisibility.confirmPassword ? 'text' : 'password'
+                  }
+                  name="confirmPassword"
+                  placeholder="••••••••"
+                  onChange={handleInputChange}
+                  onBlur={handleInputTouched}
+                />
+                <FontAwesomeIcon
+                  icon={passwordVisibility.confirmPassword ? faEyeSlash : faEye}
+                  onClick={() => handleTogglePassword('confirmPassword')}
+                />
+              </div>
               {errorMessages.confirmPassword && (
                 <p>{errorMessages.confirmPassword}</p>
               )}
