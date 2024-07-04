@@ -25,6 +25,23 @@ export default function AuthPage(props) {
     });
   }
 
+  const [formTouched, setFormTouched] = useState({
+    email: false,
+    password: false,
+    confirmPassword: false,
+  });
+
+  function handleInputTouched(e) {
+    const { name } = e.target;
+
+    setFormTouched(prevState => {
+      return {
+        ...prevState,
+        [name]: true,
+      };
+    });
+  }
+
   async function submitHandler(e) {
     e.preventDefault();
 
@@ -57,7 +74,7 @@ export default function AuthPage(props) {
       <div>
         <h2>{authValue === 'login' ? 'Login' : 'Create an Account'}</h2>
 
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} noValidate>
           <label>
             Email Address
             <input
@@ -65,6 +82,7 @@ export default function AuthPage(props) {
               name="email"
               placeholder="name@email.com"
               onChange={handleInputChange}
+              onBlur={handleInputTouched}
             />
           </label>
           <label>
@@ -74,6 +92,7 @@ export default function AuthPage(props) {
               name="password"
               placeholder="••••••••"
               onChange={handleInputChange}
+              onBlur={handleInputTouched}
             />
           </label>
           {authValue === 'signup' && (
@@ -84,6 +103,7 @@ export default function AuthPage(props) {
                 name="confirmPassword"
                 placeholder="••••••••"
                 onChange={handleInputChange}
+                onBlur={handleInputTouched}
               />
             </label>
           )}
