@@ -30,7 +30,7 @@ def post_login():
         set_access_cookies(response, access_token)
 
         return response
-    return jsonify({'msg': 'Invalid credentials'}), 401
+    return jsonify({'msg': 'Invalid email or password. Please try again.'}), 401
 
 def logout():
     response = make_response(jsonify({'msg': 'You are successfully logged out.'}), 200)
