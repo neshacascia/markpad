@@ -111,12 +111,14 @@ export default function AuthPage(props) {
       newErrors.password = 'Password must have a minimum of 8 characters.';
     }
 
-    if (confirmPasswordNotValid || !formTouched.confirmPassword) {
-      newErrors.confirmPassword =
-        'Password must have a minimum of 8 characters.';
+    if (authValue === 'signup') {
+      if (confirmPasswordNotValid || !formTouched.confirmPassword) {
+        newErrors.confirmPassword =
+          'Password must have a minimum of 8 characters.';
+      }
     }
 
-    if (!passwordsMatch) {
+    if (authValue === 'signup' && !passwordsMatch) {
       newErrors.passwordsMatch =
         'Uh oh! The passwords you entered do not match.';
     }
