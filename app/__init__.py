@@ -1,6 +1,7 @@
 from flask import Flask, send_from_directory
+from flask_cors import CORS
 from app.config import Config
-from app.extensions import db
+from app.extensions import db, bcrypt, jwt
 from app.routes import register_routes
 import os
 
@@ -9,10 +10,15 @@ def create_app():
     app.config.from_object(Config)
 
     db.init_app(app)
+    bcrypt.init_app(app)
+    jwt.init_app(app)
 
     with app.app_context():
         db.create_all()
         register_routes(app)
+    
+    # enable CORS with credentials
+    CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}}, supports_credentials=True)
 
     # serve the React static files
     @app.route('/', defaults={'path': ''})
