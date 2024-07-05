@@ -1,9 +1,17 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { getCookie } from '../utils/cookies';
 
 export default function HomePage() {
   const { storeAuthValue } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (getCookie('csrf_access_token')) {
+      navigate('/document');
+    }
+  }, []);
 
   return (
     <main>
