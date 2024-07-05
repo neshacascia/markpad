@@ -213,7 +213,7 @@ export default function AuthPage(props) {
                   onClick={() => handleTogglePassword('confirmPassword')}
                 />
               </div>
-              {errorMessages.confirmPassword && (
+              {authValue === 'signup' && errorMessages.confirmPassword && (
                 <p>{errorMessages.confirmPassword}</p>
               )}
             </label>
