@@ -1,8 +1,10 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 
 const AuthContext = createContext();
 
 function AuthContextProvider(props) {
+  const [user, setUser] = useState();
+
   function storeAuthValue(value) {
     if (value === 'signup') {
       localStorage.setItem('authValue', 'signup');
@@ -12,7 +14,7 @@ function AuthContextProvider(props) {
   }
 
   return (
-    <AuthContext.Provider value={{ storeAuthValue }}>
+    <AuthContext.Provider value={{ storeAuthValue, user, setUser }}>
       {props.children}
     </AuthContext.Provider>
   );
