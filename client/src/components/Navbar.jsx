@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
@@ -8,13 +10,25 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar() {
+  const [documentName, setDocumentName] = useState('welcome.md');
+
+  function handleInputChange(e) {
+    setDocumentName(e.target.value + '.md');
+  }
+
   return (
     <nav>
       <FontAwesomeIcon icon={faBars} />
 
       <div>
         <FontAwesomeIcon icon={faFile} />
-        <input type="text" name="name" id="name" />
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder={documentName}
+          onChange={handleInputChange}
+        />
       </div>
 
       <FontAwesomeIcon icon={faTrashCan} />
