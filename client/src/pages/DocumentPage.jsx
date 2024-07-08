@@ -1,10 +1,15 @@
-import { useContext, useEffect } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { getCookie } from '../utils/cookies';
 import { AuthContext } from '../context/AuthContext';
+import Editor from '@components/Editor';
+import Preview from '@components/Preview';
+
+import { defaultMarkdown } from '../defaultMarkdown';
 
 export default function DocumentPage() {
   const { user, setUser } = useContext(AuthContext);
+  const [markdown, setMarkdown] = useState(defaultMarkdown);
 
   useEffect(() => {
     if (getCookie('csrf_access_token')) {
@@ -15,10 +20,10 @@ export default function DocumentPage() {
   return (
     <>
       {user ? (
-        <section>
-          <h1>YOU HAVE BEEN AUTHENTICATED!!!!</h1>
-          <Link to="/logout">Logout</Link>
-        </section>
+        <main>
+          <Editor markdown={markdown} setMarkdown={setMarkdown} />{' '}
+          <Preview markdown={markdown} />
+        </main>
       ) : (
         <Navigate to="/" />
       )}
