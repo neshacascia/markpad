@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -32,9 +33,7 @@ export default function Navbar() {
       </div>
 
       <FontAwesomeIcon icon={faTrashCan} />
-
       <FontAwesomeIcon icon={faFloppyDisk} />
-
       <FontAwesomeIcon icon={faUser} />
     </nav>
   );
