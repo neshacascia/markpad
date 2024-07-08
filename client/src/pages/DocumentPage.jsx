@@ -21,7 +21,9 @@ export default function DocumentPage() {
     <>
       {user ? (
         <main>
+          <span>Markdown</span>
           <Editor markdown={markdown} setMarkdown={setMarkdown} />{' '}
+          <span>Preview</span>
           <Preview markdown={markdown} />
         </main>
       ) : (
