@@ -8,7 +8,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 export default function AuthPage(props) {
   const authValue = localStorage.getItem('authValue');
-  const { storeAuthValue } = useContext(AuthContext);
+  const { storeAuthValue, setUser, setIsLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [formInputs, setFormInputs] = useState({
@@ -140,10 +140,12 @@ export default function AuthPage(props) {
             },
           }
         );
-        console.log(res);
+        const { user } = res.data;
 
         if (res.status === 200 || res.status === 201) {
           navigate('/document');
+          setUser(user);
+          setIsLoggedIn(true);
         }
       } catch (err) {
         console.error(err);

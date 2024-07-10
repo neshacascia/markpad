@@ -4,6 +4,7 @@ const AuthContext = createContext();
 
 function AuthContextProvider(props) {
   const [user, setUser] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function storeAuthValue(value) {
     if (value === 'signup') {
@@ -14,7 +15,9 @@ function AuthContextProvider(props) {
   }
 
   return (
-    <AuthContext.Provider value={{ storeAuthValue, user, setUser }}>
+    <AuthContext.Provider
+      value={{ storeAuthValue, user, setUser, isLoggedIn, setIsLoggedIn }}
+    >
       {props.children}
     </AuthContext.Provider>
   );
