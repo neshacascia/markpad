@@ -26,6 +26,38 @@ export default function Navbar() {
     });
   }
 
+  async function handleSaveDocument(e) {
+    e.preventDefault();
+
+    const currentDate = new Date();
+    const options = { day: '2-digit', month: 'long', year: 'numeric' };
+    const formattedDate = currentDate.toLocaleDateString('en-GB', options);
+
+    const documentData = {
+      userId: user.user_id,
+      createdAt: formattedDate,
+      name: document.name,
+      content: document.content,
+    };
+
+    try {
+      const res = await axios.post(
+        '/api/document/saveDocument',
+        { documentData },
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      console.log(res);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   return (
     <nav>
       <FontAwesomeIcon icon={faBars} />
@@ -42,7 +74,7 @@ export default function Navbar() {
       </div>
 
       <FontAwesomeIcon icon={faTrashCan} />
-      <FontAwesomeIcon icon={faFloppyDisk} />
+      <FontAwesomeIcon icon={faFloppyDisk} onClick={handleSaveDocument} />
       <FontAwesomeIcon icon={faUser} />
     </nav>
   );
