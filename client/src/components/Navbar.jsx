@@ -1,5 +1,8 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { DocumentContext } from '../context/DocumentContext';
+import { AuthContext } from '../context/AuthContext';
+
+import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -11,10 +14,16 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar() {
-  const [documentName, setDocumentName] = useState('welcome.md');
+  const { document, setDocument } = useContext(DocumentContext);
+  const { user } = useContext(AuthContext);
 
   function handleInputChange(e) {
-    setDocumentName(e.target.value + '.md');
+    setDocument(prevState => {
+      return {
+        ...prevState,
+        name: e.target.value + '.md',
+      };
+    });
   }
 
   return (
@@ -27,7 +36,7 @@ export default function Navbar() {
           type="text"
           name="name"
           id="name"
-          placeholder={documentName}
+          placeholder="welcome.md"
           onChange={handleInputChange}
         />
       </div>
