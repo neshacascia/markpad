@@ -4,6 +4,22 @@ from app.extensions import db
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 @jwt_required()
+def get_all_documents():
+    try:
+        current_user = get_jwt_identity()
+        documents = db.session.execute(db.select(Document).filter_by(user_id=current_user)).scalars().all()
+        documents_data = [{
+            'id': document.id,
+            'created_at': document.created_at,
+            'name': document.name,
+            'content': document.content
+        } for document in documents]
+        
+        return jsonify({"documents": documents_data}), 201
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@jwt_required()
 def save_document():
     try:
         current_user = get_jwt_identity()
