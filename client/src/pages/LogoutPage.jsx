@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 
 export default function LogoutPage() {
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
     async function handleLogout() {
@@ -16,6 +18,7 @@ export default function LogoutPage() {
         });
 
         console.log(res);
+        setIsLoggedIn(false);
         navigate('/');
       } catch (err) {
         console.error(err);
