@@ -4,12 +4,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getCookie } from '../utils/cookies';
 
 export default function HomePage() {
-  const { storeAuthValue } = useContext(AuthContext);
+  const { storeAuthValue, setIsLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (getCookie('csrf_access_token')) {
       navigate('/document');
+      setIsLoggedIn(true);
     }
   }, []);
 
