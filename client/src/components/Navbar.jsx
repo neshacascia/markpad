@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { DocumentContext } from '../context/DocumentContext';
 import { AuthContext } from '../context/AuthContext';
+import { UIContext } from '../context/UIContext';
 
 import axios from 'axios';
 
@@ -16,6 +17,7 @@ import {
 export default function Navbar() {
   const { document, setDocument } = useContext(DocumentContext);
   const { user } = useContext(AuthContext);
+  const { setDisplaySidebar } = useContext(UIContext);
 
   function handleInputChange(e) {
     setDocument(prevState => {
@@ -60,7 +62,7 @@ export default function Navbar() {
 
   return (
     <nav>
-      <FontAwesomeIcon icon={faBars} />
+      <FontAwesomeIcon icon={faBars} onClick={() => setDisplaySidebar(true)} />
 
       <div>
         <FontAwesomeIcon icon={faFile} />
