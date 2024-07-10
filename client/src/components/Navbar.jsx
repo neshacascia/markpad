@@ -17,7 +17,7 @@ import {
 
 export default function Navbar() {
   const { document, setDocument } = useContext(DocumentContext);
-  const { user, isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
   const { setDisplaySidebar } = useContext(UIContext);
 
   function handleInputChange(e) {
@@ -37,7 +37,6 @@ export default function Navbar() {
     const formattedDate = currentDate.toLocaleDateString('en-GB', options);
 
     const documentData = {
-      userId: user.user_id,
       createdAt: formattedDate,
       name: document.name,
       content: document.content,
