@@ -1,7 +1,9 @@
 from flask import request, jsonify
 from app.models.document import Document
 from app.extensions import db
+from flask_jwt_extended import jwt_required
 
+@jwt_required()
 def save_document():
     try:
         data = request.get_json()
