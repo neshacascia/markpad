@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { DocumentContext } from '../context/DocumentContext';
 import { AuthContext } from '../context/AuthContext';
 import { UIContext } from '../context/UIContext';
+import { getCookie } from '../utils/cookies';
 
 import axios from 'axios';
 
@@ -50,6 +51,7 @@ export default function Navbar() {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': getCookie('csrf_access_token'),
           },
         }
       );
