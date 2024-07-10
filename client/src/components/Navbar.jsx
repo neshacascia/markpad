@@ -16,7 +16,7 @@ import {
 
 export default function Navbar() {
   const { document, setDocument } = useContext(DocumentContext);
-  const { user } = useContext(AuthContext);
+  const { user, isLoggedIn } = useContext(AuthContext);
   const { setDisplaySidebar } = useContext(UIContext);
 
   function handleInputChange(e) {
@@ -62,22 +62,27 @@ export default function Navbar() {
 
   return (
     <nav>
-      <FontAwesomeIcon icon={faBars} onClick={() => setDisplaySidebar(true)} />
-
-      <div>
-        <FontAwesomeIcon icon={faFile} />
-        <input
-          type="text"
-          name="name"
-          id="name"
-          placeholder="welcome.md"
-          onChange={handleInputChange}
-        />
-      </div>
-
-      <FontAwesomeIcon icon={faTrashCan} />
-      <FontAwesomeIcon icon={faFloppyDisk} onClick={handleSaveDocument} />
-      <FontAwesomeIcon icon={faUser} />
+      {isLoggedIn && (
+        <>
+          <FontAwesomeIcon
+            icon={faBars}
+            onClick={() => setDisplaySidebar(true)}
+          />
+          <div>
+            <FontAwesomeIcon icon={faFile} />
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="welcome.md"
+              onChange={handleInputChange}
+            />
+          </div>
+          <FontAwesomeIcon icon={faTrashCan} />
+          <FontAwesomeIcon icon={faFloppyDisk} onClick={handleSaveDocument} />
+          <FontAwesomeIcon icon={faUser} />{' '}
+        </>
+      )}
     </nav>
   );
 }
