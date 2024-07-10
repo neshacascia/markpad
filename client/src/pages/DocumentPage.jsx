@@ -9,10 +9,12 @@ import Preview from '@components/Preview';
 import Sidebar from '../components/Sidebar';
 
 import { defaultMarkdown } from '../defaultMarkdown';
+import axios from 'axios';
 
 export default function DocumentPage() {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-  const { document, setDocument } = useContext(DocumentContext);
+  const { document, setDocument, setAllDocuments } =
+    useContext(DocumentContext);
   const { displaySidebar } = useContext(UIContext);
 
   useEffect(() => {
@@ -20,6 +22,24 @@ export default function DocumentPage() {
       setDocument(defaultMarkdown);
       setIsLoggedIn(true);
     }
+
+    async function getAllDocuments() {
+      try {
+        const res = await axios.get('/api/document/getAllDocuments', {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': getCookie('csrf_access_token'),
+          },
+        });
+
+        setAllDocuments(res.data.documents);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    getAllDocuments();
   }, []);
 
   return (

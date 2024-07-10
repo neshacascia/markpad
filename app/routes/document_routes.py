@@ -3,6 +3,10 @@ from app.controllers import document_controller
 
 document_bp = Blueprint('document', __name__)
 
+@document_bp.route('/api/document/getAllDocuments', methods=['GET'])
+def get_all_documents():
+    return document_controller.get_all_documents()
+
 @document_bp.route('/api/document/saveDocument', methods=['POST'])
 def save_document():
     return document_controller.save_document()
