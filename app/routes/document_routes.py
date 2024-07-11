@@ -7,6 +7,10 @@ document_bp = Blueprint('document', __name__)
 def get_all_documents():
     return document_controller.get_all_documents()
 
+@document_bp.route('/api/document/<int:document_id>', methods=["GET"])
+def get_document(document_id):
+    return document_controller.get_document(document_id)
+
 @document_bp.route('/api/document/saveDocument', methods=['POST'])
 def save_document():
     return document_controller.save_document()

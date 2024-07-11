@@ -3,6 +3,7 @@ import Root from '@components/Root';
 import HomePage from './pages/HomePage';
 import AuthPage from './pages/AuthPage';
 import DocumentPage from './pages/DocumentPage';
+import Document from '@components/document/Document';
 import LogoutPage from './pages/LogoutPage';
 import './App.css';
 
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
       { path: 'login', element: <AuthPage /> },
       { path: 'signup', element: <AuthPage /> },
       { path: 'document', element: <DocumentPage /> },
+      { path: 'document/:id', element: <Document /> },
       { path: 'logout', element: <LogoutPage /> },
     ],
   },

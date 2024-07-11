@@ -8,10 +8,18 @@ function DocumentContextProvider(props) {
     content: '',
   });
   const [allDocuments, setAllDocuments] = useState();
+  const [isDocumentUpdated, setIsDocumentUpdated] = useState();
 
   return (
     <DocumentContext.Provider
-      value={{ document, setDocument, allDocuments, setAllDocuments }}
+      value={{
+        document,
+        setDocument,
+        allDocuments,
+        setAllDocuments,
+        isDocumentUpdated,
+        setIsDocumentUpdated,
+      }}
     >
       {props.children}
     </DocumentContext.Provider>
