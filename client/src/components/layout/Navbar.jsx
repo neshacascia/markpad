@@ -25,7 +25,7 @@ export default function Navbar() {
     setDocument(prevState => {
       return {
         ...prevState,
-        name: e.target.value + '.md',
+        name: e.target.value,
       };
     });
   }
@@ -39,13 +39,13 @@ export default function Navbar() {
 
     const documentData = {
       createdAt: formattedDate,
-      name: document.name,
+      name: document.name + '.md',
       content: document.content,
     };
 
     const updatedDocumentData = {
       id: document.id,
-      name: document.name,
+      name: document.name + '.md',
       content: document.content,
     };
 
@@ -100,6 +100,7 @@ export default function Navbar() {
               name="name"
               id="name"
               placeholder="welcome.md"
+              value={document.name ? document.name : ''}
               onChange={handleInputChange}
             />
           </div>
