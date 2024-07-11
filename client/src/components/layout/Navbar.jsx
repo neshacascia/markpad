@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DocumentContext } from '../../context/DocumentContext';
 import { AuthContext } from '../../context/AuthContext';
 import { UIContext } from '../../context/UIContext';
@@ -16,6 +17,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const { document, setDocument, setIsDocumentUpdated } =
     useContext(DocumentContext);
   const { isLoggedIn } = useContext(AuthContext);
@@ -79,7 +81,8 @@ export default function Navbar() {
           }
         );
 
-        console.log(res);
+        const documentId = res.data.document_id;
+        navigate(`/document/${documentId}`);
       }
       setIsDocumentUpdated(true);
     } catch (err) {

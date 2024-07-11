@@ -46,8 +46,8 @@ def save_document():
         new_document = Document(user_id=current_user, created_at=document_data['createdAt'], name=document_data['name'], content=document_data['content'])
         db.session.add(new_document)
         db.session.commit()
-        
-        return jsonify('Document has been saved.'), 201
+
+        return jsonify({'msg': 'Document has been saved.', 'document_id': new_document.id}), 201
     except Exception as e:
         db.session.rollback()
         return jsonify({'error': str(e)}), 500
