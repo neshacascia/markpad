@@ -20,6 +20,25 @@ def get_all_documents():
         return jsonify({'error': str(e)}), 500
 
 @jwt_required()
+def get_document(document_id):
+    try:
+        current_user = get_jwt_identity()
+        document = db.session.execute(db.select(Document).filter_by(user_id=current_user, id=document_id)).scalar()
+        print(document)
+
+        if document:
+            document_data = {
+             'id': document.id,
+            'created_at': document.created_at,
+            'name': document.name,
+            'content': document.content
+            }
+            return jsonify({'document': document_data}), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+@jwt_required()
 def save_document():
     try:
         current_user = get_jwt_identity()
