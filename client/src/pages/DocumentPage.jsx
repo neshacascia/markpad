@@ -1,25 +1,21 @@
 import { useContext, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { getCookie } from '../utils/cookies';
 import { AuthContext } from '../context/AuthContext';
 import { DocumentContext } from '../context/DocumentContext';
-import { UIContext } from '../context/UIContext';
-import Editor from '@components/Editor';
-import Preview from '@components/Preview';
-import Sidebar from '../components/Sidebar';
+import Document from '@components/Document';
 
 import { defaultMarkdown } from '../defaultMarkdown';
 import axios from 'axios';
 
 export default function DocumentPage() {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-  const { document, setDocument, setAllDocuments } =
-    useContext(DocumentContext);
-  const { displaySidebar } = useContext(UIContext);
+  const { setDocument, setAllDocuments } = useContext(DocumentContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (getCookie('csrf_access_token')) {
-      setDocument(defaultMarkdown);
       setIsLoggedIn(true);
     }
 
@@ -33,7 +29,14 @@ export default function DocumentPage() {
           },
         });
 
-        setAllDocuments(res.data.documents);
+        const { documents } = res.data;
+        setAllDocuments(documents);
+
+        if (documents.length > 0) {
+          navigate(`/document/${documents[0].id}`);
+        } else {
+          setDocument(defaultMarkdown);
+        }
       } catch (err) {
         console.error(err);
       }
@@ -46,11 +49,7 @@ export default function DocumentPage() {
     <main>
       {isLoggedIn ? (
         <section>
-          <span>Markdown</span>
-          <Editor document={document} setDocument={setDocument} />{' '}
-          <span>Preview</span>
-          <Preview markdown={document.content} />
-          {displaySidebar && <Sidebar />}
+          <Document />
         </section>
       ) : (
         <Navigate to="/" />
