@@ -37,22 +37,16 @@ export default function Navbar() {
     const options = { day: '2-digit', month: 'long', year: 'numeric' };
     const formattedDate = currentDate.toLocaleDateString('en-GB', options);
 
-    const documentData = {
-      createdAt: formattedDate,
-      name: document.name + '.md',
-      content: document.content,
-    };
-
-    const updatedDocumentData = {
-      id: document.id,
-      name: document.name.includes('.md')
-        ? document.name
-        : document.name + '.md',
-      content: document.content,
-    };
-
     try {
       if (document.id) {
+        const updatedDocumentData = {
+          id: document.id,
+          name: document.name.includes('.md')
+            ? document.name
+            : document.name + '.md',
+          content: document.content,
+        };
+
         const res = await axios.put(
           '/api/document/updateDocument',
           { updatedDocumentData },
@@ -67,6 +61,12 @@ export default function Navbar() {
 
         console.log(res);
       } else {
+        const documentData = {
+          createdAt: formattedDate,
+          name: document.name + '.md',
+          content: document.content,
+        };
+
         const res = await axios.post(
           '/api/document/saveDocument',
           { documentData },
