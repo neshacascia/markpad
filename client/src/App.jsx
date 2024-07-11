@@ -3,7 +3,7 @@ import Root from '@components/Root';
 import HomePage from './pages/HomePage';
 import AuthPage from './pages/AuthPage';
 import DocumentPage from './pages/DocumentPage';
-import Document from '@components/Document';
+import Document from '@components/document/Document';
 import LogoutPage from './pages/LogoutPage';
 import './App.css';
 

@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { DocumentContext } from '../context/DocumentContext';
-import { AuthContext } from '../context/AuthContext';
-import { UIContext } from '../context/UIContext';
+import { DocumentContext } from '../../context/DocumentContext';
+import { AuthContext } from '../../context/AuthContext';
+import { UIContext } from '../../context/UIContext';
 import Editor from './Editor';
 import Preview from './Preview';
-import Sidebar from './Sidebar';
-import { getCookie } from '../utils/cookies';
+import Sidebar from '../Sidebar';
+import { getCookie } from '../../utils/cookies';
 import axios from 'axios';
 
 export default function Document() {

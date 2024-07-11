@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { getCookie } from '../utils/cookies';
 import { AuthContext } from '../context/AuthContext';
 import { DocumentContext } from '../context/DocumentContext';
-import Document from '@components/Document';
+import Document from '@components/document/Document';
 
 import { defaultMarkdown } from '../defaultMarkdown';
 import axios from 'axios';
