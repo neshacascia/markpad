@@ -15,7 +15,7 @@ export default function Document() {
     useContext(DocumentContext);
   const { setIsLoggedIn } = useContext(AuthContext);
   const { displaySidebar } = useContext(UIContext);
-  const [loadingData, setLoadingData] = useState(true);
+  const [loadingData, setLoadingData] = useState(false);
 
   useEffect(() => {
     if (getCookie('csrf_access_token')) {
@@ -23,6 +23,7 @@ export default function Document() {
     }
 
     if (id) {
+      setLoadingData(true);
       async function fetchData() {
         try {
           const [documentRes, allDocumentsRes] = await Promise.all([
