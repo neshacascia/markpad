@@ -45,7 +45,9 @@ export default function Navbar() {
 
     const updatedDocumentData = {
       id: document.id,
-      name: document.name + '.md',
+      name: document.name.includes('.md')
+        ? document.name
+        : document.name + '.md',
       content: document.content,
     };
 
