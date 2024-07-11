@@ -16,7 +16,7 @@ def post_signup():
     db.session.commit()
 
     access_token = create_access_token(identity=new_user.id)
-    response = make_response(jsonify({'msg': 'Account created successfully.', 'user': {'user_id': user.id, 'email': user.email}}), 201)
+    response = make_response(jsonify({'msg': 'Account created successfully.'}), 201)
     set_access_cookies(response, access_token)
     
     return response
@@ -26,7 +26,7 @@ def post_login():
     user = User.query.filter_by(email=data['email']).first()
     if user and user.check_password(data['password']):
         access_token = create_access_token(identity=user.id)
-        response = make_response(jsonify({'msg': 'Success! You are logged in.', 'user': {'user_id': user.id, 'email': user.email}}), 200)
+        response = make_response(jsonify({'msg': 'Success! You are logged in.'}), 200)
         set_access_cookies(response, access_token)
 
         return response
