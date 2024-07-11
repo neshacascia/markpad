@@ -43,20 +43,42 @@ export default function Navbar() {
       content: document.content,
     };
 
-    try {
-      const res = await axios.post(
-        '/api/document/saveDocument',
-        { documentData },
-        {
-          withCredentials: true,
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': getCookie('csrf_access_token'),
-          },
-        }
-      );
+    const updatedDocumentData = {
+      id: document.id,
+      name: document.name,
+      content: document.content,
+    };
 
-      console.log(res);
+    try {
+      if (document.id) {
+        const res = await axios.put(
+          '/api/document/updateDocument',
+          { updatedDocumentData },
+          {
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': getCookie('csrf_access_token'),
+            },
+          }
+        );
+
+        console.log(res);
+      } else {
+        const res = await axios.post(
+          '/api/document/saveDocument',
+          { documentData },
+          {
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': getCookie('csrf_access_token'),
+            },
+          }
+        );
+
+        console.log(res);
+      }
       setIsDocumentUpdated(true);
     } catch (err) {
       console.error(err);
