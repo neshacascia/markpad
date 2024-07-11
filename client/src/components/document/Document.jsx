@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { UIContext } from '../../context/UIContext';
 import Editor from './Editor';
 import Preview from './Preview';
-import Sidebar from '../Sidebar';
+import Sidebar from '@components/layout/Sidebar';
 import { getCookie } from '../../utils/cookies';
 import axios from 'axios';
 

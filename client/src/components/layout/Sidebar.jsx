@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { DocumentContext } from '../context/DocumentContext';
-import { UIContext } from '../context/UIContext';
+import { DocumentContext } from '../../context/DocumentContext';
+import { UIContext } from '../../context/UIContext';
 import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
