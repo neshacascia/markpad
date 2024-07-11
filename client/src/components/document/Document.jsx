@@ -11,8 +11,13 @@ import axios from 'axios';
 
 export default function Document() {
   const { id } = useParams();
-  const { document, setDocument, setAllDocuments, isDocumentUpdated } =
-    useContext(DocumentContext);
+  const {
+    document,
+    setDocument,
+    setAllDocuments,
+    isDocumentUpdated,
+    setIsDocumentUpdated,
+  } = useContext(DocumentContext);
   const { setIsLoggedIn } = useContext(AuthContext);
   const { displaySidebar } = useContext(UIContext);
   const [loadingData, setLoadingData] = useState(false);
@@ -48,6 +53,7 @@ export default function Document() {
 
           setDocument(document);
           setAllDocuments(documents);
+          setIsDocumentUpdated(false);
         } catch (err) {
           console.error(err);
         } finally {
