@@ -16,7 +16,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar() {
-  const { document, setDocument } = useContext(DocumentContext);
+  const { document, setDocument, setIsDocumentUpdated } =
+    useContext(DocumentContext);
   const { isLoggedIn } = useContext(AuthContext);
   const { setDisplaySidebar } = useContext(UIContext);
 
@@ -56,6 +57,7 @@ export default function Navbar() {
       );
 
       console.log(res);
+      setIsDocumentUpdated(true);
     } catch (err) {
       console.error(err);
     }

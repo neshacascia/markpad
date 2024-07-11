@@ -11,7 +11,7 @@ import axios from 'axios';
 
 export default function Document() {
   const { id } = useParams();
-  const { document, setDocument, setAllDocuments } =
+  const { document, setDocument, setAllDocuments, isDocumentUpdated } =
     useContext(DocumentContext);
   const { setIsLoggedIn } = useContext(AuthContext);
   const { displaySidebar } = useContext(UIContext);
@@ -56,7 +56,7 @@ export default function Document() {
       }
       fetchData();
     }
-  }, [id]);
+  }, [id, isDocumentUpdated]);
 
   return (
     <main>
