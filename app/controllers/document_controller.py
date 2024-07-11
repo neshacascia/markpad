@@ -24,7 +24,6 @@ def get_document(document_id):
     try:
         current_user = get_jwt_identity()
         document = db.session.execute(db.select(Document).filter_by(user_id=current_user, id=document_id)).scalar()
-        print(document)
 
         if document:
             document_data = {
