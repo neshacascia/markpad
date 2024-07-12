@@ -14,3 +14,7 @@ def get_document(document_id):
 @document_bp.route('/api/document/saveDocument', methods=['POST'])
 def save_document():
     return document_controller.save_document()
+
+@document_bp.route('/api/document/updateDocument', methods=["PUT"])
+def update_document():
+    return document_controller.update_document()

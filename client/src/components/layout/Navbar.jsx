@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DocumentContext } from '../../context/DocumentContext';
 import { AuthContext } from '../../context/AuthContext';
 import { UIContext } from '../../context/UIContext';
@@ -16,6 +17,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const { document, setDocument, setIsDocumentUpdated } =
     useContext(DocumentContext);
   const { isLoggedIn } = useContext(AuthContext);
@@ -25,7 +27,7 @@ export default function Navbar() {
     setDocument(prevState => {
       return {
         ...prevState,
-        name: e.target.value + '.md',
+        name: e.target.value,
       };
     });
   }
@@ -37,26 +39,51 @@ export default function Navbar() {
     const options = { day: '2-digit', month: 'long', year: 'numeric' };
     const formattedDate = currentDate.toLocaleDateString('en-GB', options);
 
-    const documentData = {
-      createdAt: formattedDate,
-      name: document.name,
-      content: document.content,
-    };
-
     try {
-      const res = await axios.post(
-        '/api/document/saveDocument',
-        { documentData },
-        {
-          withCredentials: true,
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': getCookie('csrf_access_token'),
-          },
-        }
-      );
+      if (document.id) {
+        const updatedDocumentData = {
+          id: document.id,
+          name: document.name.includes('.md')
+            ? document.name
+            : document.name + '.md',
+          content: document.content,
+        };
 
-      console.log(res);
+        const res = await axios.put(
+          '/api/document/updateDocument',
+          { updatedDocumentData },
+          {
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': getCookie('csrf_access_token'),
+            },
+          }
+        );
+
+        console.log(res);
+      } else {
+        const documentData = {
+          createdAt: formattedDate,
+          name: document.name + '.md',
+          content: document.content,
+        };
+
+        const res = await axios.post(
+          '/api/document/saveDocument',
+          { documentData },
+          {
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': getCookie('csrf_access_token'),
+            },
+          }
+        );
+
+        const documentId = res.data.document_id;
+        navigate(`/document/${documentId}`);
+      }
       setIsDocumentUpdated(true);
     } catch (err) {
       console.error(err);
@@ -78,6 +105,7 @@ export default function Navbar() {
               name="name"
               id="name"
               placeholder="welcome.md"
+              value={document.name ? document.name : ''}
               onChange={handleInputChange}
             />
           </div>
