@@ -21,7 +21,7 @@ export default function Navbar() {
   const { document, setDocument, setIsDocumentUpdated } =
     useContext(DocumentContext);
   const { isLoggedIn } = useContext(AuthContext);
-  const { setDisplaySidebar } = useContext(UIContext);
+  const { setDisplaySidebar, openModal } = useContext(UIContext);
 
   function handleInputChange(e) {
     setDocument(prevState => {
@@ -109,7 +109,10 @@ export default function Navbar() {
               onChange={handleInputChange}
             />
           </div>
-          <FontAwesomeIcon icon={faTrashCan} />
+          <FontAwesomeIcon
+            icon={faTrashCan}
+            onClick={() => openModal('delete')}
+          />
           <FontAwesomeIcon icon={faFloppyDisk} onClick={handleSaveDocument} />
           <FontAwesomeIcon icon={faUser} />{' '}
         </>
