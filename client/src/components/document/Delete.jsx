@@ -3,10 +3,13 @@ import { DocumentContext } from '../../context/DocumentContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getCookie } from '../../utils/cookies';
+import { defaultMarkdown } from '../../defaultMarkdown';
 
 export default function Delete() {
-  const { document } = useContext(DocumentContext);
+  const { document, allDocuments, setDocument } = useContext(DocumentContext);
   const navigate = useNavigate();
+
+  const documentIndex = allDocuments.findIndex(doc => doc.id === document.id);
 
   async function handleDeleteDocument() {
     try {
@@ -21,6 +24,15 @@ export default function Delete() {
         }
       );
       console.log(res);
+
+      if (allDocuments.length === 1) {
+        setDocument(defaultMarkdown);
+        navigate('/document');
+      } else if (documentIndex === 0) {
+        navigate(`/document/${allDocuments[1].id}`);
+      } else {
+        navigate(`/document/${allDocuments[documentIndex - 1].id}`);
+      }
     } catch (err) {
       console.error(err);
     }
