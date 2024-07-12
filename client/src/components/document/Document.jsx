@@ -6,6 +6,7 @@ import { UIContext } from '../../context/UIContext';
 import Editor from './Editor';
 import Preview from './Preview';
 import Sidebar from '@components/layout/Sidebar';
+import Delete from './Delete';
 import { getCookie } from '../../utils/cookies';
 import axios from 'axios';
 
@@ -19,7 +20,7 @@ export default function Document() {
     setIsDocumentUpdated,
   } = useContext(DocumentContext);
   const { setIsLoggedIn } = useContext(AuthContext);
-  const { displaySidebar } = useContext(UIContext);
+  const { displaySidebar, modal } = useContext(UIContext);
   const [loadingData, setLoadingData] = useState(false);
 
   useEffect(() => {
@@ -64,6 +65,12 @@ export default function Document() {
     }
   }, [id, isDocumentUpdated]);
 
+  const modalComponents = {
+    delete: Delete,
+  };
+
+  const ModalComponent = modalComponents[modal];
+
   return (
     <main>
       {loadingData ? (
@@ -77,6 +84,7 @@ export default function Document() {
         </section>
       )}
       {displaySidebar && <Sidebar />}
+      {ModalComponent && <ModalComponent />}
     </main>
   );
 }
