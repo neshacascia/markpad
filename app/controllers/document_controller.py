@@ -67,3 +67,17 @@ def update_document():
     except Exception as e:
         db.session.rollback()
         return jsonify({'error': str(e)}), 500
+    
+@jwt_required()
+def delete_document(document_id):
+    try:
+        current_user = get_jwt_identity()
+        document = db.session.execute(db.select(Document).filter_by(user_id=current_user, id=document_id)).scalar()
+        db.session.delete(document)
+        db.session.commit()
+
+        return jsonify('Document has been deleted.'), 204
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
+    

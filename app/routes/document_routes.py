@@ -18,3 +18,7 @@ def save_document():
 @document_bp.route('/api/document/updateDocument', methods=["PUT"])
 def update_document():
     return document_controller.update_document()
+
+@document_bp.route('/api/document/deleteDocument/<int:document_id>', methods=["DELETE"])
+def delete_document(document_id):
+    return document_controller.delete_document(document_id)
