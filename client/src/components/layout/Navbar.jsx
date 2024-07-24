@@ -91,14 +91,17 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="text-white bg-[#1D1F22] flex">
+    <nav className="text-white bg-[#2B2D31] w-full h-14 flex items-center gap-6 py-[19px] pr-6">
       {isLoggedIn && (
         <>
-          <FontAwesomeIcon
-            icon={faBars}
-            onClick={() => setDisplaySidebar(true)}
-          />
-          <div>
+          <div className="text-white bg-[#35393F] w-14 h-14 flex justify-center items-center">
+            <FontAwesomeIcon
+              icon={faBars}
+              onClick={() => setDisplaySidebar(true)}
+              className="text-xl"
+            />
+          </div>
+          <div className="flex items-center gap-4 mr-auto">
             <FontAwesomeIcon icon={faFile} />
             <input
               type="text"
@@ -107,13 +110,21 @@ export default function Navbar() {
               placeholder="welcome.md"
               value={document.name ? document.name : ''}
               onChange={handleInputChange}
+              className="bg-transparent placeholder:text-white"
             />
           </div>
           <FontAwesomeIcon
             icon={faTrashCan}
             onClick={() => openModal('delete')}
+            className="text-[#7C8187]"
           />
-          <FontAwesomeIcon icon={faFloppyDisk} onClick={handleSaveDocument} />
+          <div className="bg-[#E46643] flex justify-center items-center p-3 rounded">
+            <FontAwesomeIcon
+              icon={faFloppyDisk}
+              onClick={handleSaveDocument}
+              className="text-xl"
+            />
+          </div>
           <FontAwesomeIcon icon={faUser} />{' '}
         </>
       )}
