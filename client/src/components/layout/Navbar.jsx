@@ -91,7 +91,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav>
+    <nav className="text-white bg-[#1D1F22] flex">
       {isLoggedIn && (
         <>
           <FontAwesomeIcon
