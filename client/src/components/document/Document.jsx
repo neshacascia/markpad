@@ -77,7 +77,6 @@ export default function Document() {
         <p>Loading...</p>
       ) : (
         <section>
-          <span>Markdown</span>
           <Editor document={document} setDocument={setDocument} />{' '}
           <span>Preview</span>
           <Preview markdown={document.content} />
