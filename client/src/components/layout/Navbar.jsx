@@ -91,7 +91,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="text-white bg-[#2B2D31] w-full h-14 flex items-center gap-6 py-[19px] pr-6">
+    <nav className="text-white bg-[#2B2D31] text-[15px] font-light w-full h-14 flex items-center gap-6 py-[19px] pr-6">
       {isLoggedIn && (
         <>
           <div className="text-white bg-[#35393F] w-14 h-14 flex justify-center items-center">
