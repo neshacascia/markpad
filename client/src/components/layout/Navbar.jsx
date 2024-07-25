@@ -94,7 +94,7 @@ export default function Navbar() {
     <nav className="text-white bg-[#2B2D31] text-[15px] font-light w-full h-14 flex items-center gap-6 py-[19px] pr-6">
       {isLoggedIn && (
         <>
-          <div className="text-white bg-[#35393F] w-14 h-14 flex justify-center items-center">
+          <div className="text-white bg-blueGray w-14 h-14 flex justify-center items-center">
             <FontAwesomeIcon
               icon={faBars}
               onClick={() => setDisplaySidebar(true)}
