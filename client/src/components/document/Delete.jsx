@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { DocumentContext } from '../../context/DocumentContext';
+import { UIContext } from '../../context/UIContext';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../ui/Modal';
 import axios from 'axios';
@@ -8,6 +9,7 @@ import { defaultMarkdown } from '../../defaultMarkdown';
 
 export default function Delete() {
   const { document, allDocuments, setDocument } = useContext(DocumentContext);
+  const { closeModal } = useContext(UIContext);
   const navigate = useNavigate();
 
   const documentIndex = allDocuments.findIndex(doc => doc.id === document.id);
@@ -25,6 +27,8 @@ export default function Delete() {
         }
       );
       console.log(res);
+
+      closeModal();
 
       if (allDocuments.length === 1) {
         setDocument(defaultMarkdown);
