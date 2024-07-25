@@ -67,7 +67,9 @@ export default function Navbar() {
       } else {
         const documentData = {
           createdAt: formattedDate,
-          name: document.name + '.md',
+          name: document.name.includes('.md')
+            ? document.name
+            : document.name + '.md',
           content: document.content,
         };
 
@@ -116,7 +118,7 @@ export default function Navbar() {
               placeholder="welcome.md"
               value={document.name ? document.name : ''}
               onChange={handleInputChange}
-              className="bg-transparent placeholder:text-white"
+              className="bg-transparent text-white placeholder:text-white/50"
             />
           </div>
           <FontAwesomeIcon
