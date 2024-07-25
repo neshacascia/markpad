@@ -12,7 +12,7 @@ export default function Editor({ document, setDocument }) {
   }
 
   return (
-    <section className="flex flex-col px-4">
+    <section className="h-screen flex flex-col px-4">
       <div className="text-[#7C8187] bg-[#F5F5F5] flex justify-between items-center py-3 px-3 -mx-4">
         <span className="text-[14px] font-medium tracking-wider uppercase">
           Markdown
@@ -25,7 +25,7 @@ export default function Editor({ document, setDocument }) {
         onChange={handleInputChange}
         rows={10}
         cols={50}
-        className="text-blueGray bg-white font-markdown text-sm leading-6 py-4"
+        className="text-blueGray bg-white font-markdown text-sm leading-6 h-screen py-4"
       />
     </section>
   );
