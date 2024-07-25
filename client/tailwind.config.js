@@ -5,6 +5,8 @@ export default {
     extend: {
       colors: {
         blueGray: '#35393F',
+        bodyGray: '#7C8187',
+        bloodOrange: '#E46643',
       },
       fontFamily: {
         roboto: 'Roboto',

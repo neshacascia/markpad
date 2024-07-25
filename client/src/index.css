@@ -3,3 +3,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ul li::marker {
+  list-style: disc;
+  color: #e46643;
+}
+
+blockquote p {
+  color: #35393f !important;
+}

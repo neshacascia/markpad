@@ -15,7 +15,63 @@ export default function Preview({ markdown, setShowPreview }) {
           onClick={() => setShowPreview(false)}
         />
       </div>
-      <Markdown className="font-robotoSlab py-4">{markdown}</Markdown>
+      <Markdown
+        components={{
+          h1: ({ node, ...props }) => (
+            <h1 className="text-blueGray text-[32px] font-bold" {...props} />
+          ),
+          h2: ({ node, ...props }) => (
+            <h2 className="text-blueGray text-[28px] font-light" {...props} />
+          ),
+          h3: ({ node, ...props }) => (
+            <h3 className="text-blueGray text-2xl font-bold" {...props} />
+          ),
+          h4: ({ node, ...props }) => (
+            <h4 className="text-blueGray text-xl font-bold" {...props} />
+          ),
+          h5: ({ node, ...props }) => (
+            <h5 className="text-blueGray text-base font-bold" {...props} />
+          ),
+          h6: ({ node, ...props }) => (
+            <h6 className="text-bloodOrange text-sm font-bold" {...props} />
+          ),
+          p: ({ node, ...props }) => (
+            <p className="text-bodyGray text-sm leading-6" {...props} />
+          ),
+          ol: ({ node, ...props }) => (
+            <ol
+              className="text-bodyGray text-sm leading-6 list-decimal pl-6 list-outside"
+              {...props}
+            />
+          ),
+          ul: ({ node, ...props }) => (
+            <ul
+              className="text-bodyGray text-sm leading-6 list-disc pl-6 list-outside"
+              {...props}
+            />
+          ),
+          li: ({ node, ...props }) => <li className="pl-2" {...props} />,
+          blockquote: ({ node, ...props }) => (
+            <blockquote
+              className="bg-[#F5F5F5] font-bold text-sm leading-6 rounded border-l-4 border-bloodOrange p-6"
+              {...props}
+            />
+          ),
+          a: ({ node, ...props }) => <a className="underline" {...props} />,
+          code: ({ node, ...props }) => (
+            <code className="text-blueGray text-sm leading-6" {...props} />
+          ),
+          pre: ({ node, ...props }) => (
+            <pre
+              className="text-blueGray bg-[#F5F5F5] text-sm leading-6 rounded p-6"
+              {...props}
+            />
+          ),
+        }}
+        className="font-robotoSlab flex flex-col gap-5 py-4"
+      >
+        {markdown}
+      </Markdown>
     </section>
   );
 }
