@@ -25,6 +25,7 @@ export default function Editor({ document, setDocument }) {
         onChange={handleInputChange}
         rows={10}
         cols={50}
+        className="text-blueGray bg-white font-markdown text-sm leading-6 py-4"
       />
     </section>
   );
