@@ -15,7 +15,7 @@ export default function Preview({ markdown, setShowPreview }) {
           onClick={() => setShowPreview(false)}
         />
       </div>
-      <Markdown>{markdown}</Markdown>
+      <Markdown className="font-robotoSlab py-4">{markdown}</Markdown>
     </section>
   );
 }
