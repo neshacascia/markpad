@@ -26,7 +26,7 @@ export default function Sidebar() {
   ));
 
   return (
-    <div>
+    <div className="text-white bg-[#1D1F22] w-[250px] h-screen fixed left-0 top-0 bottom-0">
       <span>Markpad</span>
       <div>
         <span>My Documents</span>
