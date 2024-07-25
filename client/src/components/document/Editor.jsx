@@ -24,7 +24,6 @@ export default function Editor({ document, setDocument, setShowPreview }) {
         value={document.content}
         onChange={handleInputChange}
         rows={10}
-        cols={50}
         className="text-blueGray bg-white font-markdown text-sm leading-6 h-screen py-4"
       />
     </section>
