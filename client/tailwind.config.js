@@ -9,6 +9,7 @@ export default {
       fontFamily: {
         roboto: 'Roboto',
         robotoSlab: ['Roboto Slab'],
+        markdown: ['Roboto Mono'],
       },
     },
   },
