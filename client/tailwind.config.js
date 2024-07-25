@@ -12,6 +12,7 @@ export default {
         roboto: 'Roboto',
         robotoSlab: ['Roboto Slab'],
         markdown: ['Roboto Mono'],
+        title: 'Commissioner',
       },
     },
   },
