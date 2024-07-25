@@ -10,6 +10,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
+  faX,
   faFile,
   faTrashCan,
   faFloppyDisk,
@@ -21,7 +22,8 @@ export default function Navbar() {
   const { document, setDocument, setIsDocumentUpdated } =
     useContext(DocumentContext);
   const { isLoggedIn } = useContext(AuthContext);
-  const { setDisplaySidebar, openModal } = useContext(UIContext);
+  const { displaySidebar, setDisplaySidebar, openModal } =
+    useContext(UIContext);
 
   function handleInputChange(e) {
     setDocument(prevState => {
@@ -91,14 +93,18 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="text-white bg-[#2B2D31] text-[15px] font-light w-full h-14 flex items-center gap-6 py-[19px] pr-6 fixed">
+    <nav
+      className={`text-white bg-[#2B2D31] text-[15px] font-light w-full h-14 flex items-center gap-6 py-[19px] pr-6 fixed ${
+        displaySidebar ? 'pl-[250px]' : ''
+      }`}
+    >
       {isLoggedIn && (
         <>
           <div className="text-white bg-blueGray w-14 h-14 flex justify-center items-center">
             <FontAwesomeIcon
-              icon={faBars}
-              onClick={() => setDisplaySidebar(true)}
-              className="text-xl"
+              icon={!displaySidebar ? faBars : faX}
+              onClick={() => setDisplaySidebar(prevState => !prevState)}
+              className="text-lg"
             />
           </div>
           <div className="flex items-center gap-4 mr-auto">
