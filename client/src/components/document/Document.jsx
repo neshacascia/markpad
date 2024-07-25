@@ -73,7 +73,7 @@ export default function Document() {
   const ModalComponent = modalComponents[modal];
 
   return (
-    <main>
+    <main className="pt-14">
       {loadingData ? (
         <p>Loading...</p>
       ) : (
