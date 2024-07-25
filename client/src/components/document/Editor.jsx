@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
-export default function Editor({ document, setDocument }) {
+export default function Editor({ document, setDocument, setShowPreview }) {
   function handleInputChange(e) {
     const { name, value } = e.target;
 
@@ -17,7 +17,7 @@ export default function Editor({ document, setDocument }) {
         <span className="text-[14px] font-medium tracking-wider uppercase">
           Markdown
         </span>
-        <FontAwesomeIcon icon={faEye} />
+        <FontAwesomeIcon icon={faEye} onClick={() => setShowPreview(true)} />
       </div>
       <textarea
         name="content"

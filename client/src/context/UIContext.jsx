@@ -5,6 +5,7 @@ const UIContext = createContext();
 function UIContextProvider(props) {
   const [displaySidebar, setDisplaySidebar] = useState(false);
   const [modal, setModal] = useState(null);
+  const [showPreview, setShowPreview] = useState(false);
 
   function openModal(modalKey) {
     setModal(modalKey);
@@ -23,6 +24,8 @@ function UIContextProvider(props) {
         setModal,
         openModal,
         closeModal,
+        showPreview,
+        setShowPreview,
       }}
     >
       {props.children}

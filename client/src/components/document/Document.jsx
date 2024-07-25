@@ -20,7 +20,8 @@ export default function Document() {
     setIsDocumentUpdated,
   } = useContext(DocumentContext);
   const { setIsLoggedIn } = useContext(AuthContext);
-  const { displaySidebar, modal } = useContext(UIContext);
+  const { displaySidebar, modal, showPreview, setShowPreview } =
+    useContext(UIContext);
   const [loadingData, setLoadingData] = useState(false);
 
   useEffect(() => {
@@ -77,9 +78,18 @@ export default function Document() {
         <p>Loading...</p>
       ) : (
         <section>
-          <Editor document={document} setDocument={setDocument} />{' '}
-          <span>Preview</span>
-          <Preview markdown={document.content} />
+          {!showPreview ? (
+            <Editor
+              document={document}
+              setDocument={setDocument}
+              setShowPreview={setShowPreview}
+            />
+          ) : (
+            <Preview
+              markdown={document.content}
+              setShowPreview={setShowPreview}
+            />
+          )}
         </section>
       )}
       {displaySidebar && <Sidebar />}
