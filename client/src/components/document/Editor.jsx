@@ -23,8 +23,12 @@ export default function Editor({
   }
 
   function adjustTextareaHeight(textarea) {
+    const savedScrollTop = window.scrollY;
+
     textarea.style.height = 'auto';
     textarea.style.height = `${textarea.scrollHeight}px`;
+
+    window.scrollTo(0, savedScrollTop);
   }
 
   useEffect(() => {
