@@ -73,7 +73,7 @@ export default function Document() {
   const ModalComponent = modalComponents[modal];
 
   return (
-    <main className="w-screen flex pt-14">
+    <main className="w-screen flex pt-14 md:pt-[72px]">
       {displaySidebar && <Sidebar />}
       {loadingData ? (
         <p>Loading...</p>
