@@ -1,11 +1,15 @@
 import Markdown from 'react-markdown';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 
-export default function Preview({ markdown, setShowPreview }) {
+export default function Preview({ markdown, showPreview, setShowPreview }) {
   return (
-    <section className="w-screen h-screen flex flex-col px-4 md:w-1/2">
+    <section
+      className={`w-screen h-screen flex flex-col px-4 ${
+        showPreview ? 'w-screen' : 'md:w-1/2'
+      }`}
+    >
       <div className="text-[#7C8187] bg-[#F5F5F5] flex justify-between items-center py-3 px-3 -mx-4">
         <span className="text-[14px] font-medium tracking-wider uppercase">
           Preview
@@ -13,6 +17,12 @@ export default function Preview({ markdown, setShowPreview }) {
         <FontAwesomeIcon
           icon={faEyeSlash}
           onClick={() => setShowPreview(false)}
+          className="md:hidden"
+        />
+        <FontAwesomeIcon
+          icon={showPreview ? faEyeSlash : faEye}
+          onClick={() => setShowPreview(prevState => !prevState)}
+          className="hidden md:block"
         />
       </div>
       <Markdown
