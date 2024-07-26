@@ -22,7 +22,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { document, setDocument, setIsDocumentUpdated } =
     useContext(DocumentContext);
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, user } = useContext(AuthContext);
   const {
     displaySidebar,
     setDisplaySidebar,
@@ -169,18 +169,21 @@ export default function Navbar() {
       )}
 
       {userSettings && (
-        <div className="bg-blueGray w-[343px] absolute flex flex-col gap-8 right-0 top-20 rounded p-6 mr-6">
-          <button className="bg-[#e37455] w-14 h-14 flex justify-center items-center rounded-full">
-            <FontAwesomeIcon icon={faUser} className="text-2xl" />{' '}
-          </button>
+        <div className="bg-blueGray w-[343px] absolute flex flex-col gap-8 right-0 top-[74px] rounded p-6 mr-6">
+          <div className="flex items-center gap-6">
+            <button className="bg-[#e37455] w-14 h-14 flex justify-center items-center rounded-full">
+              <FontAwesomeIcon icon={faUser} className="text-2xl" />{' '}
+            </button>
+            <p className="font-medium">{user}</p>
+          </div>
 
           <Link
             to="logout"
             onClick={() => setUserSettings(false)}
-            className="text-[15px] font-medium flex items-center gap-10 pl-4"
+            className="text-[15px] font-medium flex items-center gap-12 pl-4"
           >
             {' '}
-            <FontAwesomeIcon icon={faRightFromBracket} className="text-xl " />
+            <FontAwesomeIcon icon={faRightFromBracket} className="text-lg" />
             Logout
           </Link>
         </div>
