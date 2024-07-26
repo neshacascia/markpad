@@ -106,8 +106,8 @@ export default function Navbar() {
         displaySidebar ? 'pl-[250px] w-auto lg:w-full' : ''
       }`}
     >
-      {isLoggedIn && (
-        <>
+      {isLoggedIn ? (
+        <div>
           <div
             className={`text-white bg-blueGray w-14 h-14 flex justify-center items-center md:w-[72px] md:h-[72px] ${
               displaySidebar ? 'px-7' : ''
@@ -165,7 +165,31 @@ export default function Navbar() {
           >
             <FontAwesomeIcon icon={faUser} className="text-lg p-3" />{' '}
           </button>
-        </>
+        </div>
+      ) : (
+        <div className="w-full flex items-center">
+          <Link
+            to="/"
+            className={`${
+              isLoggedIn ? 'hidden ' : 'block'
+            } font-title text-[15px] tracking-[8px] uppercase pl-6`}
+          >
+            Markpad
+          </Link>
+
+          <ul className="flex items-center gap-5 ml-auto">
+            <li>
+              <Link to="/login" onClick={() => storeAuthValue('login')}>
+                Login
+              </Link>
+            </li>
+            <li className="bg-[#E46643] flex justify-center items-center py-[10px] px-3 rounded md:gap-3 lg:px-4">
+              <Link to="/signup" onClick={() => storeAuthValue('signup')}>
+                Signup
+              </Link>
+            </li>
+          </ul>
+        </div>
       )}
 
       {userSettings && (
