@@ -12,7 +12,7 @@ export default function Editor({ document, setDocument, setShowPreview }) {
   }
 
   return (
-    <section className="h-screen flex flex-col px-4">
+    <section className="w-screen h-screen flex flex-col px-4 md:w-1/2 md:border-r-[1px] border-[#E4E4E4]">
       <div className="text-[#7C8187] bg-[#F5F5F5] flex justify-between items-center py-3 px-3 -mx-4">
         <span className="text-[14px] font-medium tracking-wider uppercase">
           Markdown
