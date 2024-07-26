@@ -171,9 +171,9 @@ export default function Navbar() {
       {userSettings && (
         <div className="bg-blueGray w-[343px] absolute flex flex-col gap-8 right-0 top-[74px] rounded p-6 mr-6">
           <div className="flex items-center gap-6">
-            <button className="bg-[#e37455] w-14 h-14 flex justify-center items-center rounded-full">
+            <div className="bg-[#e37455] w-14 h-14 flex justify-center items-center rounded-full">
               <FontAwesomeIcon icon={faUser} className="text-2xl" />{' '}
-            </button>
+            </div>
             <p className="font-medium">{user}</p>
           </div>
 
