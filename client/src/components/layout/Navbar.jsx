@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { DocumentContext } from '../../context/DocumentContext';
 import { AuthContext } from '../../context/AuthContext';
 import { UIContext } from '../../context/UIContext';
@@ -15,6 +15,7 @@ import {
   faTrashCan,
   faFloppyDisk,
   faUser,
+  faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar() {
@@ -22,8 +23,13 @@ export default function Navbar() {
   const { document, setDocument, setIsDocumentUpdated } =
     useContext(DocumentContext);
   const { isLoggedIn } = useContext(AuthContext);
-  const { displaySidebar, setDisplaySidebar, openModal } =
-    useContext(UIContext);
+  const {
+    displaySidebar,
+    setDisplaySidebar,
+    openModal,
+    userSettings,
+    setUserSettings,
+  } = useContext(UIContext);
 
   function handleInputChange(e) {
     setDocument(prevState => {
@@ -152,8 +158,32 @@ export default function Navbar() {
             />
             <p className="hidden md:block text-[15px]">Save Changes</p>
           </button>
-          <FontAwesomeIcon icon={faUser} className="text-lg" />{' '}
+          <span className="hidden lg:block border-[#5A6069] h-10 border-r-[1px]"></span>
+          <button
+            onClick={() => setUserSettings(prevState => !prevState)}
+            className="bg-[#e37455] flex justify-center items-center rounded-full"
+          >
+            <FontAwesomeIcon icon={faUser} className="text-lg p-3" />{' '}
+          </button>
         </>
+      )}
+
+      {userSettings && (
+        <div className="bg-blueGray w-[343px] absolute flex flex-col gap-8 right-0 top-20 rounded p-6 mr-6">
+          <button className="bg-[#e37455] w-14 h-14 flex justify-center items-center rounded-full">
+            <FontAwesomeIcon icon={faUser} className="text-2xl" />{' '}
+          </button>
+
+          <Link
+            to="logout"
+            onClick={() => setUserSettings(false)}
+            className="text-[15px] font-medium flex items-center gap-10 pl-4"
+          >
+            {' '}
+            <FontAwesomeIcon icon={faRightFromBracket} className="text-xl " />
+            Logout
+          </Link>
+        </div>
       )}
     </nav>
   );
