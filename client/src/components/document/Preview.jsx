@@ -82,7 +82,9 @@ export default function Preview({ markdown, showPreview, setShowPreview }) {
           ),
         }}
         className={`font-robotoSlab flex flex-col gap-5 py-4 ${
-          showPreview ? 'md:py-6 md:px-12' : 'md:py-[22px] md:px-2'
+          showPreview
+            ? 'md:py-6 md:px-12 lg:px-[384px]'
+            : 'md:py-[22px] md:px-2'
         }`}
       >
         {markdown}
