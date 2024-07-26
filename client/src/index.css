@@ -12,3 +12,9 @@ ul li::marker {
 blockquote p {
   color: #35393f !important;
 }
+
+::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
