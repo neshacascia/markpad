@@ -79,7 +79,11 @@ export default function Document() {
         <p>Loading...</p>
       ) : (
         <section>
-          <section className="w-screen md:hidden">
+          <section
+            className={`w-screen md:hidden ${
+              displaySidebar ? 'pl-[250px] w-auto' : ''
+            }`}
+          >
             {!showPreview ? (
               <Editor
                 document={document}
@@ -93,7 +97,11 @@ export default function Document() {
               />
             )}
           </section>
-          <section className="hidden w-screen md:flex">
+          <section
+            className={`hidden w-screen md:flex ${
+              displaySidebar ? 'md:pl-[250px] md:w-auto' : ''
+            }`}
+          >
             <Editor
               document={document}
               setDocument={setDocument}

@@ -97,19 +97,27 @@ export default function Navbar() {
   return (
     <nav
       className={`text-white bg-[#2B2D31] text-[15px] font-light w-full h-14 flex items-center gap-6 py-[19px] pr-6 fixed md:h-[72px] ${
-        displaySidebar ? 'pl-[250px]' : ''
+        displaySidebar ? 'pl-[250px] w-auto' : ''
       }`}
     >
       {isLoggedIn && (
         <>
-          <div className="text-white bg-blueGray w-14 h-14 flex justify-center items-center md:w-[72px] md:h-[72px]">
+          <div
+            className={`text-white bg-blueGray w-14 h-14 flex justify-center items-center md:w-[72px] md:h-[72px] ${
+              displaySidebar ? 'px-7' : ''
+            }`}
+          >
             <FontAwesomeIcon
               icon={!displaySidebar ? faBars : faX}
               onClick={() => setDisplaySidebar(prevState => !prevState)}
               className="text-lg md:text-2xl"
             />
           </div>
-          <div className="flex items-center gap-4 mr-auto">
+          <div
+            className={`flex items-center gap-4 mr-auto ${
+              displaySidebar ? 'pr-[250px]' : ''
+            }`}
+          >
             <FontAwesomeIcon icon={faFile} className="md:text-lg" />
             <div className="flex flex-col">
               <span className="hidden md:block text-bodyGray text-[13px] font-light">
