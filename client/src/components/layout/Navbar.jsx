@@ -118,6 +118,11 @@ export default function Navbar() {
               displaySidebar ? 'pr-[250px]' : ''
             }`}
           >
+            <span className="hidden lg:block font-title text-[15px] tracking-[8px] uppercase">
+              Markpad
+            </span>
+            <span className="hidden lg:block border-[#5A6069] h-10 border-r-[1px] mr-2"></span>
+
             <FontAwesomeIcon icon={faFile} className="md:text-lg" />
             <div className="flex flex-col">
               <span className="hidden md:block text-bodyGray text-[13px] font-light">
@@ -139,7 +144,7 @@ export default function Navbar() {
             onClick={() => openModal('delete')}
             className="text-[#7C8187] text-lg"
           />
-          <button className="bg-[#E46643] flex justify-center items-center p-[10px] rounded md:gap-3">
+          <button className="bg-[#E46643] flex justify-center items-center p-[10px] rounded md:gap-3 lg:px-4">
             <FontAwesomeIcon
               icon={faFloppyDisk}
               onClick={handleSaveDocument}
