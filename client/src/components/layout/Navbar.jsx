@@ -97,7 +97,7 @@ export default function Navbar() {
   return (
     <nav
       className={`text-white bg-[#2B2D31] text-[15px] font-light w-full h-14 flex items-center gap-6 py-[19px] pr-6 fixed md:h-[72px] ${
-        displaySidebar ? 'pl-[250px] w-auto' : ''
+        displaySidebar ? 'pl-[250px] w-auto lg:w-full' : ''
       }`}
     >
       {isLoggedIn && (

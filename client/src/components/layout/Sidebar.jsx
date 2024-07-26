@@ -39,11 +39,11 @@ export default function Sidebar() {
 
   return (
     <div className="text-white bg-[#1D1F22] w-[250px] h-screen fixed left-0 top-0 bottom-0 py-7 px-6">
-      <span className="font-title text-[15px] tracking-[8px] uppercase">
+      <span className="font-title text-[15px] tracking-[8px] uppercase lg:hidden">
         Markpad
       </span>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col lg:-mt-7">
         <span className="text-bodyGray text-sm tracking-widest uppercase py-7">
           My Documents
         </span>
