@@ -20,8 +20,13 @@ export default function Document() {
     setIsDocumentUpdated,
   } = useContext(DocumentContext);
   const { setIsLoggedIn } = useContext(AuthContext);
-  const { displaySidebar, modal, showPreview, setShowPreview } =
-    useContext(UIContext);
+  const {
+    displaySidebar,
+    modal,
+    showPreview,
+    setShowPreview,
+    setUserSettings,
+  } = useContext(UIContext);
   const [loadingData, setLoadingData] = useState(false);
 
   useEffect(() => {
@@ -73,7 +78,10 @@ export default function Document() {
   const ModalComponent = modalComponents[modal];
 
   return (
-    <main className="w-screen flex pt-14 md:pt-[72px]">
+    <main
+      onClick={() => setUserSettings(false)}
+      className="w-screen flex pt-14 md:pt-[72px]"
+    >
       {displaySidebar && <Sidebar />}
       {loadingData ? (
         <p>Loading...</p>
