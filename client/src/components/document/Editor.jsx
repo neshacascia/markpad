@@ -1,3 +1,5 @@
+import { useRef, useEffect } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,6 +9,8 @@ export default function Editor({
   showPreview,
   setShowPreview,
 }) {
+  const textareaRef = useRef(null);
+
   function handleInputChange(e) {
     const { name, value } = e.target;
 
@@ -14,11 +18,24 @@ export default function Editor({
       ...prevDocument,
       [name]: value,
     }));
+
+    adjustTextareaHeight(e.target);
   }
+
+  function adjustTextareaHeight(textarea) {
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      adjustTextareaHeight(textareaRef.current);
+    }
+  }, [document.content]);
 
   return (
     <section
-      className={`w-screen h-screen flex flex-col px-4 ${
+      className={`w-screen flex flex-col px-4 ${
         showPreview ? 'hidden' : 'md:w-1/2'
       } md:border-r-[1px] border-[#E4E4E4]`}
     >
@@ -33,11 +50,12 @@ export default function Editor({
         />
       </div>
       <textarea
+        ref={textareaRef}
         name="content"
         value={document.content}
         onChange={handleInputChange}
         rows={10}
-        className="text-blueGray bg-white font-markdown text-sm leading-6 h-screen py-4"
+        className="text-blueGray bg-white font-markdown text-sm leading-6 py-4 resize-none overflow-hidden mb-6"
       />
     </section>
   );
