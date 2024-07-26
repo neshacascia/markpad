@@ -1,5 +1,6 @@
 from flask import request, jsonify
 from app.models.document import Document
+from app.models.user import User
 from app.extensions import db
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
@@ -7,6 +8,8 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 def get_all_documents():
     try:
         current_user = get_jwt_identity()
+        user = db.session.execute(db.select(User).filter_by(id=current_user)).scalar()
+
         documents = db.session.execute(db.select(Document).filter_by(user_id=current_user)).scalars().all()
         documents_data = [{
             'id': document.id,
@@ -15,7 +18,7 @@ def get_all_documents():
             'content': document.content
         } for document in documents]
         
-        return jsonify({"documents": documents_data}), 200
+        return jsonify({"documents": documents_data, "user": user.email}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
