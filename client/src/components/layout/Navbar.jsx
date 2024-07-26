@@ -96,35 +96,40 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`text-white bg-[#2B2D31] text-[15px] font-light w-full h-14 flex items-center gap-6 py-[19px] pr-6 fixed ${
+      className={`text-white bg-[#2B2D31] text-[15px] font-light w-full h-14 flex items-center gap-6 py-[19px] pr-6 fixed md:h-[72px] ${
         displaySidebar ? 'pl-[250px]' : ''
       }`}
     >
       {isLoggedIn && (
         <>
-          <div className="text-white bg-blueGray w-14 h-14 flex justify-center items-center">
+          <div className="text-white bg-blueGray w-14 h-14 flex justify-center items-center md:w-[72px] md:h-[72px]">
             <FontAwesomeIcon
               icon={!displaySidebar ? faBars : faX}
               onClick={() => setDisplaySidebar(prevState => !prevState)}
-              className="text-lg"
+              className="text-lg md:text-2xl"
             />
           </div>
           <div className="flex items-center gap-4 mr-auto">
-            <FontAwesomeIcon icon={faFile} />
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="welcome.md"
-              value={document.name ? document.name : ''}
-              onChange={handleInputChange}
-              className="bg-transparent text-white placeholder:text-white/50"
-            />
+            <FontAwesomeIcon icon={faFile} className="md:text-lg" />
+            <div className="flex flex-col">
+              <span className="hidden md:block text-bodyGray text-[13px] font-light">
+                Document Name
+              </span>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="welcome.md"
+                value={document.name ? document.name : ''}
+                onChange={handleInputChange}
+                className="bg-transparent text-white placeholder:text-white/50"
+              />
+            </div>
           </div>
           <FontAwesomeIcon
             icon={faTrashCan}
             onClick={() => openModal('delete')}
-            className="text-[#7C8187]"
+            className="text-[#7C8187] text-lg"
           />
           <div className="bg-[#E46643] flex justify-center items-center p-3 rounded">
             <FontAwesomeIcon
