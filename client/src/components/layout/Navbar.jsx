@@ -131,14 +131,15 @@ export default function Navbar() {
             onClick={() => openModal('delete')}
             className="text-[#7C8187] text-lg"
           />
-          <div className="bg-[#E46643] flex justify-center items-center p-3 rounded">
+          <button className="bg-[#E46643] flex justify-center items-center p-[10px] rounded md:gap-3">
             <FontAwesomeIcon
               icon={faFloppyDisk}
               onClick={handleSaveDocument}
               className="text-xl"
             />
-          </div>
-          <FontAwesomeIcon icon={faUser} />{' '}
+            <p className="hidden md:block text-[15px]">Save Changes</p>
+          </button>
+          <FontAwesomeIcon icon={faUser} className="text-lg" />{' '}
         </>
       )}
     </nav>
