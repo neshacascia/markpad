@@ -69,16 +69,21 @@ export default function Preview({ markdown, showPreview, setShowPreview }) {
           ),
           a: ({ node, ...props }) => <a className="underline" {...props} />,
           code: ({ node, ...props }) => (
-            <code className="text-blueGray text-sm leading-6" {...props} />
+            <code
+              className="text-blueGray text-sm leading-6 w-full"
+              {...props}
+            />
           ),
           pre: ({ node, ...props }) => (
             <pre
-              className="text-blueGray bg-[#F5F5F5] text-sm leading-6 rounded p-6"
+              className="text-blueGray bg-[#F5F5F5] text-sm leading-6 rounded p-6 overflow-auto"
               {...props}
             />
           ),
         }}
-        className="font-robotoSlab flex flex-col gap-5 py-4"
+        className={`font-robotoSlab flex flex-col gap-5 py-4 ${
+          showPreview ? 'md:py-6 md:px-12' : 'md:py-[22px] md:px-2'
+        }`}
       >
         {markdown}
       </Markdown>
