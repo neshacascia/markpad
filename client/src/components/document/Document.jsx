@@ -19,7 +19,7 @@ export default function Document() {
     isDocumentUpdated,
     setIsDocumentUpdated,
   } = useContext(DocumentContext);
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const { setIsLoggedIn, setUser } = useContext(AuthContext);
   const {
     displaySidebar,
     modal,
@@ -56,11 +56,12 @@ export default function Document() {
           ]);
 
           const { document } = documentRes.data;
-          const { documents } = allDocumentsRes.data;
+          const { documents, user } = allDocumentsRes.data;
 
           setDocument(document);
           setAllDocuments(documents);
           setIsDocumentUpdated(false);
+          setUser(user);
         } catch (err) {
           console.error(err);
         } finally {

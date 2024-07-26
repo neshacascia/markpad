@@ -9,7 +9,7 @@ import { defaultMarkdown } from '../defaultMarkdown';
 import axios from 'axios';
 
 export default function DocumentPage() {
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn, setUser } = useContext(AuthContext);
   const { setDocument, setAllDocuments } = useContext(DocumentContext);
 
   const navigate = useNavigate();
@@ -29,8 +29,9 @@ export default function DocumentPage() {
           },
         });
 
-        const { documents } = res.data;
+        const { documents, user } = res.data;
         setAllDocuments(documents);
+        setUser(user);
 
         if (documents.length > 0) {
           navigate(`/document/${documents[0].id}`);
