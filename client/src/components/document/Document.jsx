@@ -78,19 +78,32 @@ export default function Document() {
       {loadingData ? (
         <p>Loading...</p>
       ) : (
-        <section className="w-screen">
-          {!showPreview ? (
+        <section>
+          <section className="w-screen md:hidden">
+            {!showPreview ? (
+              <Editor
+                document={document}
+                setDocument={setDocument}
+                setShowPreview={setShowPreview}
+              />
+            ) : (
+              <Preview
+                markdown={document.content}
+                setShowPreview={setShowPreview}
+              />
+            )}
+          </section>
+          <section className="hidden w-screen md:flex">
             <Editor
               document={document}
               setDocument={setDocument}
               setShowPreview={setShowPreview}
             />
-          ) : (
             <Preview
               markdown={document.content}
               setShowPreview={setShowPreview}
             />
-          )}
+          </section>
         </section>
       )}
       {ModalComponent && <ModalComponent />}
