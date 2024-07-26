@@ -97,10 +97,12 @@ export default function Document() {
             <Editor
               document={document}
               setDocument={setDocument}
+              showPreview={showPreview}
               setShowPreview={setShowPreview}
             />
             <Preview
               markdown={document.content}
+              showPreview={showPreview}
               setShowPreview={setShowPreview}
             />
           </section>
