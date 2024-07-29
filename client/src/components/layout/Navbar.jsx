@@ -22,7 +22,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { document, setDocument, setIsDocumentUpdated } =
     useContext(DocumentContext);
-  const { isLoggedIn, user } = useContext(AuthContext);
+  const { isLoggedIn, user, storeAuthValue } = useContext(AuthContext);
   const {
     displaySidebar,
     setDisplaySidebar,
