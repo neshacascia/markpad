@@ -181,20 +181,20 @@ export default function AuthPage(props) {
               placeholder="name@email.com"
               onChange={handleInputChange}
               onBlur={handleInputTouched}
-              className="text-[13px] font-light border-[1px] rounded py-[10px] px-4"
+              className="text-[13px] font-light border-[1px] rounded py-[10px] px-4 focus:outline-none focus:ring-1 focus:ring-bloodOrange"
             />
             {errorMessages.email && <p>{errorMessages.email}</p>}
           </label>
           <label className="text-[13px] font-semibold w-72 text-left flex flex-col gap-2">
             Password
-            <div className="text-[13px] font-light flex items-center justify-between border-[1px] rounded px-4">
+            <div className="text-[13px] font-light flex items-center justify-between border-[1px] rounded px-4 focus-within:ring-1 focus-within:ring-bloodOrange">
               <input
                 type={passwordVisibility.password ? 'text' : 'password'}
                 name="password"
                 placeholder="••••••••"
                 onChange={handleInputChange}
                 onBlur={handleInputTouched}
-                className="w-full h-full rounded py-[13px]"
+                className="w-full h-full rounded py-[13px] focus:outline-none"
               />
               <FontAwesomeIcon
                 icon={passwordVisibility.password ? faEyeSlash : faEye}
@@ -206,7 +206,7 @@ export default function AuthPage(props) {
           {authValue === 'signup' && (
             <label className="text-[13px] font-semibold w-72 text-left flex flex-col gap-2">
               Confirm Password
-              <div className="text-[13px] font-light flex items-center justify-between border-[1px] rounded px-4">
+              <div className="text-[13px] font-light flex items-center justify-between border-[1px] rounded px-4 focus-within:ring-1 focus-within:ring-bloodOrange">
                 <input
                   type={
                     passwordVisibility.confirmPassword ? 'text' : 'password'
@@ -215,7 +215,7 @@ export default function AuthPage(props) {
                   placeholder="••••••••"
                   onChange={handleInputChange}
                   onBlur={handleInputTouched}
-                  className="w-full h-full rounded py-[13px]"
+                  className="w-full h-full rounded py-[13px] focus:outline-none"
                 />
                 <FontAwesomeIcon
                   icon={passwordVisibility.confirmPassword ? faEyeSlash : faEye}
