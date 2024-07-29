@@ -35,6 +35,12 @@ export default function Editor({
     if (textareaRef.current) {
       adjustTextareaHeight(textareaRef.current);
     }
+
+    // recalculates the textare height whenver the window is resized
+    const handleResize = () => adjustTextareaHeight(textareaRef.current);
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener;
   }, [document.content]);
 
   return (
