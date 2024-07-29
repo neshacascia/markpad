@@ -7,6 +7,7 @@ import Editor from './Editor';
 import Preview from './Preview';
 import Sidebar from '@components/layout/Sidebar';
 import Delete from './Delete';
+import LoadingSpinner from '../ui/LoadingSpinner';
 import { getCookie } from '../../utils/cookies';
 import axios from 'axios';
 
@@ -19,8 +20,14 @@ export default function Document() {
     isDocumentUpdated,
     setIsDocumentUpdated,
   } = useContext(DocumentContext);
-  const { setIsLoggedIn } = useContext(AuthContext);
-  const { displaySidebar, modal } = useContext(UIContext);
+  const { setIsLoggedIn, setUser } = useContext(AuthContext);
+  const {
+    displaySidebar,
+    modal,
+    showPreview,
+    setShowPreview,
+    setUserSettings,
+  } = useContext(UIContext);
   const [loadingData, setLoadingData] = useState(false);
 
   useEffect(() => {
@@ -50,11 +57,12 @@ export default function Document() {
           ]);
 
           const { document } = documentRes.data;
-          const { documents } = allDocumentsRes.data;
+          const { documents, user } = allDocumentsRes.data;
 
           setDocument(document);
           setAllDocuments(documents);
           setIsDocumentUpdated(false);
+          setUser(user);
         } catch (err) {
           console.error(err);
         } finally {
@@ -72,18 +80,52 @@ export default function Document() {
   const ModalComponent = modalComponents[modal];
 
   return (
-    <main>
+    <main
+      onClick={() => setUserSettings(false)}
+      className="w-screen flex pt-14 md:pt-[72px]"
+    >
+      {displaySidebar && <Sidebar />}
       {loadingData ? (
-        <p>Loading...</p>
+        <LoadingSpinner />
       ) : (
-        <section>
-          <span>Markdown</span>
-          <Editor document={document} setDocument={setDocument} />{' '}
-          <span>Preview</span>
-          <Preview markdown={document.content} />
+        <section className="w-screen">
+          <section
+            className={`w-screen md:hidden ${
+              displaySidebar ? 'pl-[250px] w-auto' : ''
+            }`}
+          >
+            {!showPreview ? (
+              <Editor
+                document={document}
+                setDocument={setDocument}
+                setShowPreview={setShowPreview}
+              />
+            ) : (
+              <Preview
+                markdown={document.content}
+                setShowPreview={setShowPreview}
+              />
+            )}
+          </section>
+          <section
+            className={`hidden w-screen md:flex ${
+              displaySidebar ? 'md:pl-[250px] md:w-auto' : ''
+            }`}
+          >
+            <Editor
+              document={document}
+              setDocument={setDocument}
+              showPreview={showPreview}
+              setShowPreview={setShowPreview}
+            />
+            <Preview
+              markdown={document.content}
+              showPreview={showPreview}
+              setShowPreview={setShowPreview}
+            />
+          </section>
         </section>
       )}
-      {displaySidebar && <Sidebar />}
       {ModalComponent && <ModalComponent />}
     </main>
   );

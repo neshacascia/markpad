@@ -140,11 +140,9 @@ export default function AuthPage(props) {
             },
           }
         );
-        const { user } = res.data;
 
         if (res.status === 200 || res.status === 201) {
           navigate('/document');
-          setUser(user);
           setIsLoggedIn(true);
         }
       } catch (err) {
@@ -164,12 +162,18 @@ export default function AuthPage(props) {
   }
 
   return (
-    <section>
-      <div>
-        <h2>{authValue === 'login' ? 'Login' : 'Create an Account'}</h2>
+    <section className="w-screen h-screen flex justify-center items-center pt-14 md:pt-[72px]">
+      <div className="text-center">
+        <h2 className="text-bloodOrange text-2xl font-robotoSlab font-semibold">
+          {authValue === 'login' ? 'Login' : 'Create an Account'}
+        </h2>
 
-        <form onSubmit={submitHandler} noValidate>
-          <label>
+        <form
+          onSubmit={submitHandler}
+          noValidate
+          className="flex flex-col gap-6 pt-6"
+        >
+          <label className="text-[13px] font-semibold w-72 text-left flex flex-col gap-2">
             Email Address
             <input
               type="email"
@@ -177,30 +181,46 @@ export default function AuthPage(props) {
               placeholder="name@email.com"
               onChange={handleInputChange}
               onBlur={handleInputTouched}
+              className={`text-[13px] font-light border-[1px] rounded py-[10px] px-4 focus:outline-none focus:ring-1 ${
+                errorMessages.email ? 'border-red-500' : ''
+              }`}
             />
-            {errorMessages.email && <p>{errorMessages.email}</p>}
+            {errorMessages.email && (
+              <p className="text-red-500">{errorMessages.email}</p>
+            )}
           </label>
-          <label>
+          <label className="text-[13px] font-semibold w-72 text-left flex flex-col gap-2">
             Password
-            <div>
+            <div
+              className={`text-[13px] font-light flex items-center justify-between border-[1px] rounded px-4 focus-within:ring-1 ${
+                errorMessages.password ? 'border-red-500' : ''
+              }`}
+            >
               <input
                 type={passwordVisibility.password ? 'text' : 'password'}
                 name="password"
                 placeholder="••••••••"
                 onChange={handleInputChange}
                 onBlur={handleInputTouched}
+                className="w-full h-full rounded py-[13px] focus:outline-none"
               />
               <FontAwesomeIcon
                 icon={passwordVisibility.password ? faEyeSlash : faEye}
                 onClick={() => handleTogglePassword('password')}
               />
             </div>
-            {errorMessages.password && <p>{errorMessages.password}</p>}
+            {errorMessages.password && (
+              <p className="text-red-500">{errorMessages.password}</p>
+            )}
           </label>
           {authValue === 'signup' && (
-            <label>
+            <label className="text-[13px] font-semibold w-72 text-left flex flex-col gap-2">
               Confirm Password
-              <div>
+              <div
+                className={`text-[13px] font-light flex items-center justify-between border-[1px] rounded px-4 focus-within:ring-1 ${
+                  errorMessages.confirmPassword ? 'border-red-500' : ''
+                }`}
+              >
                 <input
                   type={
                     passwordVisibility.confirmPassword ? 'text' : 'password'
@@ -209,6 +229,7 @@ export default function AuthPage(props) {
                   placeholder="••••••••"
                   onChange={handleInputChange}
                   onBlur={handleInputTouched}
+                  className="w-full h-full rounded py-[13px] focus:outline-none"
                 />
                 <FontAwesomeIcon
                   icon={passwordVisibility.confirmPassword ? faEyeSlash : faEye}
@@ -216,19 +237,22 @@ export default function AuthPage(props) {
                 />
               </div>
               {authValue === 'signup' && errorMessages.confirmPassword && (
-                <p>{errorMessages.confirmPassword}</p>
+                <p className="text-red-500">{errorMessages.confirmPassword}</p>
               )}
             </label>
           )}
           {formTouched.password &&
             formTouched.confirmPassword &&
             !passwordsMatch && <p>{errorMessages.passwordsMatch}</p>}
-          <button type="submit">
+          <button
+            type="submit"
+            className="text-white bg-bloodOrange font-robotoSlab font-semibold tracking-wider rounded py-3 px-10 mt-4 hover:bg-orangeHover"
+          >
             {authValue === 'login' ? 'Login' : 'Signup'}
           </button>
         </form>
 
-        <p>
+        <p className="text-sm pt-6">
           {authValue === 'signup'
             ? 'Already have an account? '
             : "Don't have an account? "}
