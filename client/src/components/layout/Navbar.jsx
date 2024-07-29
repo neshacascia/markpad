@@ -116,7 +116,7 @@ export default function Navbar() {
             <FontAwesomeIcon
               icon={!displaySidebar ? faBars : faX}
               onClick={() => setDisplaySidebar(prevState => !prevState)}
-              className="text-lg md:text-2xl"
+              className="text-lg md:text-2xl hover:cursor-pointer"
             />
           </div>
           <div
@@ -141,16 +141,16 @@ export default function Navbar() {
                 placeholder="welcome.md"
                 value={document.name ? document.name : ''}
                 onChange={handleInputChange}
-                className="bg-transparent text-white placeholder:text-white/50"
+                className="bg-transparent text-white placeholder:text-white/50 border-b border-b-transparent hover:border-b-neutral-300 focus:outline-none"
               />
             </div>
           </div>
           <FontAwesomeIcon
             icon={faTrashCan}
             onClick={() => openModal('delete')}
-            className="text-[#7C8187] text-lg"
+            className="text-[#7C8187] text-lg hover:cursor-pointer"
           />
-          <button className="bg-[#E46643] flex justify-center items-center p-[10px] rounded md:gap-3 lg:px-4">
+          <button className="bg-[#E46643] flex justify-center items-center p-[10px] rounded md:gap-3 lg:px-4 hover:bg-orangeHover">
             <FontAwesomeIcon
               icon={faFloppyDisk}
               onClick={handleSaveDocument}
@@ -183,7 +183,7 @@ export default function Navbar() {
                 Login
               </Link>
             </li>
-            <li className="bg-[#E46643] flex justify-center items-center py-[10px] px-3 rounded md:gap-3 lg:px-4">
+            <li className="bg-[#E46643] flex justify-center items-center py-[10px] px-3 rounded md:gap-3 lg:px-4 hover:bg-orangeHover">
               <Link to="/signup" onClick={() => storeAuthValue('signup')}>
                 Signup
               </Link>
@@ -193,7 +193,7 @@ export default function Navbar() {
       )}
 
       {userSettings && (
-        <div className="bg-blueGray w-[343px] absolute flex flex-col gap-8 right-0 top-[74px] rounded p-6 mr-6">
+        <div className="bg-blueGray w-[343px] absolute flex flex-col gap-6 right-0 top-[74px] rounded p-6 mr-6">
           <div className="flex items-center gap-6">
             <div className="bg-[#e37455] w-14 h-14 flex justify-center items-center rounded-full">
               <FontAwesomeIcon icon={faUser} className="text-2xl" />{' '}
@@ -201,15 +201,17 @@ export default function Navbar() {
             <p className="font-medium">{user}</p>
           </div>
 
-          <Link
-            to="logout"
-            onClick={() => setUserSettings(false)}
-            className="text-[15px] font-medium flex items-center gap-12 pl-4"
-          >
-            {' '}
-            <FontAwesomeIcon icon={faRightFromBracket} className="text-lg" />
-            Logout
-          </Link>
+          <div className="hover:bg-[#565c65] -mx-6 px-6 py-3">
+            <Link
+              to="logout"
+              onClick={() => setUserSettings(false)}
+              className="text-[15px] font-medium flex items-center gap-12 pl-4"
+            >
+              {' '}
+              <FontAwesomeIcon icon={faRightFromBracket} className="text-lg" />
+              Logout
+            </Link>
+          </div>
         </div>
       )}
     </nav>

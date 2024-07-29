@@ -59,7 +59,7 @@ export default function Editor({
         value={document.content}
         onChange={handleInputChange}
         rows={10}
-        className="text-blueGray bg-white font-markdown text-sm leading-6 py-4 resize-none overflow-hidden mb-6"
+        className="text-blueGray bg-white font-markdown text-sm leading-6 py-4 resize-none overflow-hidden mb-6 focus:outline-none"
       />
     </section>
   );
