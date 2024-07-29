@@ -22,7 +22,7 @@ export default function Preview({ markdown, showPreview, setShowPreview }) {
         <FontAwesomeIcon
           icon={showPreview ? faEyeSlash : faEye}
           onClick={() => setShowPreview(prevState => !prevState)}
-          className="hidden md:block"
+          className="hidden md:block hover:cursor-pointer"
         />
       </div>
       <Markdown

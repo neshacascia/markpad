@@ -50,7 +50,7 @@ export default function Editor({
         <FontAwesomeIcon
           icon={faEye}
           onClick={() => setShowPreview(true)}
-          className="md:hidden"
+          className="md:hidden hover:cursor-pointer"
         />
       </div>
       <textarea

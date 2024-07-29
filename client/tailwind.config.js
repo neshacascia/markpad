@@ -7,6 +7,7 @@ export default {
         blueGray: '#35393F',
         bodyGray: '#7C8187',
         bloodOrange: '#E46643',
+        orangeHover: '#F39765',
       },
       fontFamily: {
         roboto: 'Roboto',

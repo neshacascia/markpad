@@ -54,7 +54,7 @@ export default function Delete() {
         </p>
         <button
           onClick={handleDeleteDocument}
-          className="text-white bg-bloodOrange text-[15px] font-light w-full rounded py-3"
+          className="text-white bg-bloodOrange text-[15px] font-light w-full rounded py-3 hover:bg-orangeHover"
         >
           Confirm & Delete
         </button>

@@ -49,7 +49,7 @@ export default function Sidebar() {
         </span>
         <button
           onClick={createNewDocument}
-          className="bg-bloodOrange text-[15px] rounded py-3"
+          className="bg-bloodOrange text-[15px] rounded py-3 hover:bg-orangeHover"
         >
           + New Document
         </button>

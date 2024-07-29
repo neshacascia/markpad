@@ -32,7 +32,7 @@ export default function HomePage() {
           <Link
             to="/signup"
             onClick={() => storeAuthValue('signup')}
-            className="text-white bg-[#E46643] font-light flex justify-center items-center py-3 px-6 rounded"
+            className="text-white bg-[#E46643] font-light flex justify-center items-center py-3 px-6 rounded hover:bg-orangeHover"
           >
             Get Started
           </Link>
