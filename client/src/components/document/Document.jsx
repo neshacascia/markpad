@@ -7,6 +7,7 @@ import Editor from './Editor';
 import Preview from './Preview';
 import Sidebar from '@components/layout/Sidebar';
 import Delete from './Delete';
+import LoadingSpinner from '../ui/LoadingSpinner';
 import { getCookie } from '../../utils/cookies';
 import axios from 'axios';
 
@@ -85,7 +86,7 @@ export default function Document() {
     >
       {displaySidebar && <Sidebar />}
       {loadingData ? (
-        <p>Loading...</p>
+        <LoadingSpinner />
       ) : (
         <section className="w-screen">
           <section

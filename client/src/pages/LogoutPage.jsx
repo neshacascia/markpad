@@ -1,6 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
 import axios from 'axios';
 
 export default function LogoutPage() {
@@ -28,5 +29,10 @@ export default function LogoutPage() {
     handleLogout();
   }, []);
 
-  return <p>Logging out...</p>;
+  return (
+    <main className="text-bloodOrange w-screen h-screen flex flex-col items-center justify-center">
+      <p>Logging out...</p>;
+      <LoadingSpinner />
+    </main>
+  );
 }
