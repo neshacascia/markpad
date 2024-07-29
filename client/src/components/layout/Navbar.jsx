@@ -107,7 +107,7 @@ export default function Navbar() {
       }`}
     >
       {isLoggedIn ? (
-        <div>
+        <>
           <div
             className={`text-white bg-blueGray w-14 h-14 flex justify-center items-center md:w-[72px] md:h-[72px] ${
               displaySidebar ? 'px-7' : ''
@@ -165,7 +165,7 @@ export default function Navbar() {
           >
             <FontAwesomeIcon icon={faUser} className="text-lg p-3" />{' '}
           </button>
-        </div>
+        </>
       ) : (
         <div className="w-full flex items-center">
           <Link
