@@ -171,9 +171,9 @@ export default function AuthPage(props) {
         <form
           onSubmit={submitHandler}
           noValidate
-          className="flex flex-col gap-10 pt-10"
+          className="flex flex-col gap-10 py-10"
         >
-          <label className="flex flex-col gap-2 text-left">
+          <label className="text-[13px] font-semibold w-72 text-left flex flex-col gap-2">
             Email Address
             <input
               type="email"
@@ -181,18 +181,20 @@ export default function AuthPage(props) {
               placeholder="name@email.com"
               onChange={handleInputChange}
               onBlur={handleInputTouched}
+              className="text-[13px] font-light border-[1px] rounded py-[10px] px-4"
             />
             {errorMessages.email && <p>{errorMessages.email}</p>}
           </label>
-          <label className="flex flex-col gap-2 text-left">
+          <label className="text-[13px] font-semibold w-72 text-left flex flex-col gap-2">
             Password
-            <div>
+            <div className="text-[13px] font-light flex items-center justify-between border-[1px] rounded px-4">
               <input
                 type={passwordVisibility.password ? 'text' : 'password'}
                 name="password"
                 placeholder="••••••••"
                 onChange={handleInputChange}
                 onBlur={handleInputTouched}
+                className="w-full h-full rounded py-[13px]"
               />
               <FontAwesomeIcon
                 icon={passwordVisibility.password ? faEyeSlash : faEye}
@@ -202,9 +204,9 @@ export default function AuthPage(props) {
             {errorMessages.password && <p>{errorMessages.password}</p>}
           </label>
           {authValue === 'signup' && (
-            <label className="flex flex-col gap-2 text-left">
+            <label className="text-[13px] font-semibold w-72 text-left flex flex-col gap-2">
               Confirm Password
-              <div>
+              <div className="text-[13px] font-light flex items-center justify-between border-[1px] rounded px-4">
                 <input
                   type={
                     passwordVisibility.confirmPassword ? 'text' : 'password'
@@ -213,6 +215,7 @@ export default function AuthPage(props) {
                   placeholder="••••••••"
                   onChange={handleInputChange}
                   onBlur={handleInputTouched}
+                  className="w-full h-full rounded py-[13px]"
                 />
                 <FontAwesomeIcon
                   icon={passwordVisibility.confirmPassword ? faEyeSlash : faEye}
@@ -229,7 +232,7 @@ export default function AuthPage(props) {
             !passwordsMatch && <p>{errorMessages.passwordsMatch}</p>}
           <button
             type="submit"
-            className="text-white bg-bloodOrange rounded py-3 px-10 mt-10"
+            className="text-white bg-bloodOrange rounded py-3 px-10 mt-4"
           >
             {authValue === 'login' ? 'Login' : 'Signup'}
           </button>
