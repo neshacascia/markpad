@@ -232,7 +232,7 @@ export default function AuthPage(props) {
             !passwordsMatch && <p>{errorMessages.passwordsMatch}</p>}
           <button
             type="submit"
-            className="text-white bg-bloodOrange rounded py-3 px-10 mt-4"
+            className="text-white bg-bloodOrange font-robotoSlab font-semibold tracking-wider rounded py-3 px-10 mt-4"
           >
             {authValue === 'login' ? 'Login' : 'Signup'}
           </button>
