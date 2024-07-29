@@ -140,11 +140,9 @@ export default function AuthPage(props) {
             },
           }
         );
-        const { user } = res.data;
 
         if (res.status === 200 || res.status === 201) {
           navigate('/document');
-          setUser(user);
           setIsLoggedIn(true);
         }
       } catch (err) {
@@ -164,12 +162,18 @@ export default function AuthPage(props) {
   }
 
   return (
-    <section>
-      <div>
-        <h2>{authValue === 'login' ? 'Login' : 'Create an Account'}</h2>
+    <section className="w-screen h-screen flex justify-center items-center pt-14 md:pt-[72px]">
+      <div className="text-center">
+        <h2 className="text-bloodOrange text-2xl font-robotoSlab font-semibold">
+          {authValue === 'login' ? 'Login' : 'Create an Account'}
+        </h2>
 
-        <form onSubmit={submitHandler} noValidate>
-          <label>
+        <form
+          onSubmit={submitHandler}
+          noValidate
+          className="flex flex-col gap-10 pt-10"
+        >
+          <label className="flex flex-col gap-2 text-left">
             Email Address
             <input
               type="email"
@@ -180,7 +184,7 @@ export default function AuthPage(props) {
             />
             {errorMessages.email && <p>{errorMessages.email}</p>}
           </label>
-          <label>
+          <label className="flex flex-col gap-2 text-left">
             Password
             <div>
               <input
@@ -198,7 +202,7 @@ export default function AuthPage(props) {
             {errorMessages.password && <p>{errorMessages.password}</p>}
           </label>
           {authValue === 'signup' && (
-            <label>
+            <label className="flex flex-col gap-2 text-left">
               Confirm Password
               <div>
                 <input
@@ -223,12 +227,15 @@ export default function AuthPage(props) {
           {formTouched.password &&
             formTouched.confirmPassword &&
             !passwordsMatch && <p>{errorMessages.passwordsMatch}</p>}
-          <button type="submit">
+          <button
+            type="submit"
+            className="text-white bg-bloodOrange rounded py-3 px-10 mt-10"
+          >
             {authValue === 'login' ? 'Login' : 'Signup'}
           </button>
         </form>
 
-        <p>
+        <p className="text-sm pt-6">
           {authValue === 'signup'
             ? 'Already have an account? '
             : "Don't have an account? "}
