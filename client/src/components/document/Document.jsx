@@ -87,7 +87,7 @@ export default function Document() {
       {loadingData ? (
         <p>Loading...</p>
       ) : (
-        <section>
+        <section className="w-screen">
           <section
             className={`w-screen md:hidden ${
               displaySidebar ? 'pl-[250px] w-auto' : ''
