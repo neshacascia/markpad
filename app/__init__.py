@@ -29,7 +29,8 @@ def create_app():
     @app.after_request
     def refresh_expiring_jwts(response):
         try:
-            exp_timestamp = get_jwt(["exp"])
+            jwt_data = get_jwt()
+            exp_timestamp = jwt_data["exp"] if "exp" in jwt_data else None
             now = datetime.now(timezone.utc)
             target_timestamp = datetime.timestamp(now + timedelta(minutes=30))
             if target_timestamp > exp_timestamp:
