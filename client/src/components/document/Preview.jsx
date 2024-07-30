@@ -39,7 +39,7 @@ export default function Preview({
         </span>
         <button
           onClick={downloadAsPDF}
-          className="flex items-center gap-2 border-[1px] rounded px-3 py-[1px]"
+          className="flex items-center gap-2 border-[1px] rounded px-3 py-[1px] hover:border-gray-600 hover:text-gray-600"
         >
           <FontAwesomeIcon icon={faFileArrowDown} />
           Save as PDF
