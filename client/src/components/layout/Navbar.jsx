@@ -20,7 +20,7 @@ import {
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { document, setDocument, setIsDocumentUpdated } =
+  const { document, setDocument, setIsDocumentUpdated, allDocuments } =
     useContext(DocumentContext);
   const { isLoggedIn, user, storeAuthValue } = useContext(AuthContext);
   const {
@@ -145,17 +145,22 @@ export default function Navbar() {
               />
             </div>
           </div>
-          <FontAwesomeIcon
-            icon={faTrashCan}
+          <button
             onClick={() => openModal('delete')}
-            className="text-[#7C8187] text-lg hover:cursor-pointer"
-          />
-          <button className="bg-[#E46643] flex justify-center items-center p-[10px] rounded md:gap-3 lg:px-4 hover:bg-orangeHover">
+            disabled={allDocuments?.length === 0}
+            className="hover:cursor-pointer disabled:cursor-not-allowed"
+          >
             <FontAwesomeIcon
-              icon={faFloppyDisk}
-              onClick={handleSaveDocument}
-              className="text-xl"
+              icon={faTrashCan}
+              className="text-[#7C8187] text-lg"
             />
+          </button>
+
+          <button
+            onClick={handleSaveDocument}
+            className="bg-[#E46643] flex justify-center items-center p-[10px] rounded md:gap-3 lg:px-4 hover:bg-orangeHover"
+          >
+            <FontAwesomeIcon icon={faFloppyDisk} className="text-xl" />
             <p className="hidden md:block text-[15px]">Save Changes</p>
           </button>
           <span className="hidden lg:block border-[#5A6069] h-10 border-r-[1px]"></span>
