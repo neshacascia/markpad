@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { DocumentContext } from '../../context/DocumentContext';
 import { AuthContext } from '../../context/AuthContext';
@@ -30,6 +30,7 @@ export default function Navbar() {
     userSettings,
     setUserSettings,
   } = useContext(UIContext);
+  const [error, setError] = useState();
 
   function handleInputChange(e) {
     setDocument(prevState => {
@@ -47,7 +48,13 @@ export default function Navbar() {
     const options = { day: '2-digit', month: 'long', year: 'numeric' };
     const formattedDate = currentDate.toLocaleDateString('en-GB', options);
 
+    if (document.name.trim() === '') {
+      setError('Document name is required.');
+      return;
+    }
+
     try {
+      setError('');
       if (document.id) {
         const updatedDocumentData = {
           id: document.id,
@@ -144,6 +151,11 @@ export default function Navbar() {
                 className="bg-transparent text-white placeholder:text-white/50 border-b border-b-transparent hover:border-b-neutral-300 focus:outline-none"
               />
             </div>
+            {error && (
+              <p className="text-red-500 text-xs font-semibold -ml-2">
+                {error}
+              </p>
+            )}
           </div>
           <button
             onClick={() => openModal('delete')}
