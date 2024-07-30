@@ -152,7 +152,7 @@ export default function Navbar() {
               />
             </div>
             {error && (
-              <p className="text-red-500 text-xs font-semibold text-center -ml-16 md:-ml-2">
+              <p className="text-red-500 text-xs font-semibold text-center -ml-16 md:-ml-2 md:text-sm">
                 {error}
               </p>
             )}
