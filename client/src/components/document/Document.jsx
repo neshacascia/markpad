@@ -103,6 +103,7 @@ export default function Document() {
             ) : (
               <Preview
                 markdown={document.content}
+                document={document}
                 setShowPreview={setShowPreview}
               />
             )}
@@ -120,6 +121,7 @@ export default function Document() {
             />
             <Preview
               markdown={document.content}
+              document={document}
               showPreview={showPreview}
               setShowPreview={setShowPreview}
             />
