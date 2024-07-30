@@ -49,7 +49,7 @@ export default function Editor({
         showPreview ? 'hidden' : 'md:w-1/2'
       } md:border-r-[1px] border-[#E4E4E4]`}
     >
-      <div className="text-[#7C8187] bg-[#F5F5F5] flex justify-between items-center py-3 px-3 -mx-4">
+      <div className="text-[#7C8187] bg-[#F5F5F5] flex justify-between items-center py-[14px] px-3 -mx-4">
         <span className="text-[14px] font-medium tracking-wider uppercase">
           Markdown
         </span>
