@@ -23,7 +23,8 @@ def create_app():
         register_routes(app)
     
     # enable CORS with credentials
-    CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}}, supports_credentials=True)
+    if os.getenv('FLASK_ENV') == 'development':
+        CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}}, supports_credentials=True)
 
     # refresh JWT tokens if they are about to expire
     @app.after_request
