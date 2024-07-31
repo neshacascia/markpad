@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 const UIContext = createContext();
 
@@ -16,6 +16,23 @@ function UIContextProvider(props) {
     setModal(null);
   }
 
+  const initialTheme = localStorage.getItem('theme') || 'light';
+  const [isDarkMode, setIsDarkMode] = useState(initialTheme === 'dark');
+
+  useEffect(() => {
+    if (isDarkMode) {
+      localStorage.setItem('theme', 'dark');
+      document.documentElement.classList.add('dark');
+    } else {
+      localStorage.setItem('theme', 'light');
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
+  function toggleTheme() {
+    setIsDarkMode(prevState => !prevState);
+  }
+
   return (
     <UIContext.Provider
       value={{
@@ -29,6 +46,9 @@ function UIContextProvider(props) {
         setShowPreview,
         userSettings,
         setUserSettings,
+        toggleTheme,
+        isDarkMode,
+        setIsDarkMode,
       }}
     >
       {props.children}
