@@ -163,7 +163,7 @@ export default function AuthPage(props) {
   }
 
   return (
-    <section className="w-screen h-screen flex justify-center items-center pt-14 md:pt-[72px]">
+    <section className="bg-white w-screen h-screen flex justify-center items-center pt-14 md:pt-[72px]">
       <div className="text-center">
         <h2 className="text-bloodOrange text-2xl font-robotoSlab font-semibold">
           {authValue === 'login' ? 'Login' : 'Create an Account'}
