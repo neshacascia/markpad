@@ -15,7 +15,7 @@ export default function Sidebar() {
     setDisplaySidebar(false);
   }
 
-  const documentList = allDocuments.map(document => (
+  const documentList = allDocuments?.map(document => (
     <li className="flex items-center">
       <Link
         to={`/document/${document.id}`}

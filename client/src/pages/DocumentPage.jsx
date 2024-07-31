@@ -34,7 +34,7 @@ export default function DocumentPage() {
         setAllDocuments(documents);
         setUser(user);
 
-        if (documents.length > 0) {
+        if (documents?.length > 0) {
           navigate(`/document/${documents[0].id}`);
         } else {
           setDocument(defaultMarkdown);
