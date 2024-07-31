@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 import axios from 'axios';
+import { baseURL } from '../utils/api';
 
 export default function LogoutPage() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function LogoutPage() {
   useEffect(() => {
     async function handleLogout() {
       try {
-        const res = await axios.get('/api/auth/logout', {
+        const res = await axios.get(`${baseURL}/auth/logout`, {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/json',

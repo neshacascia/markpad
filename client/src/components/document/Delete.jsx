@@ -6,6 +6,7 @@ import Modal from '../ui/Modal';
 import axios from 'axios';
 import { getCookie } from '../../utils/cookies';
 import { defaultMarkdown } from '../../defaultMarkdown';
+import { baseURL } from '../../utils/api';
 
 export default function Delete() {
   const { document, allDocuments, setDocument } = useContext(DocumentContext);
@@ -17,7 +18,7 @@ export default function Delete() {
   async function handleDeleteDocument() {
     try {
       const res = await axios.delete(
-        `/api/document/deleteDocument/${document.id}`,
+        `${baseURL}/document/deleteDocument/${document.id}`,
         {
           withCredentials: true,
           headers: {

@@ -6,6 +6,7 @@ import { UIContext } from '../../context/UIContext';
 import { getCookie } from '../../utils/cookies';
 
 import axios from 'axios';
+import { baseURL } from '../../utils/api';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -65,7 +66,7 @@ export default function Navbar() {
         };
 
         const res = await axios.put(
-          '/api/document/updateDocument',
+          `${baseURL}/document/updateDocument`,
           { updatedDocumentData },
           {
             withCredentials: true,
@@ -87,7 +88,7 @@ export default function Navbar() {
         };
 
         const res = await axios.post(
-          '/api/document/saveDocument',
+          `${baseURL}/document/saveDocument`,
           { documentData },
           {
             withCredentials: true,

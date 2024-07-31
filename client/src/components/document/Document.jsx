@@ -10,6 +10,7 @@ import Delete from './Delete';
 import LoadingSpinner from '../ui/LoadingSpinner';
 import { getCookie } from '../../utils/cookies';
 import axios from 'axios';
+import { baseURL } from '../../utils/api';
 
 export default function Document() {
   const { id } = useParams();
@@ -40,14 +41,14 @@ export default function Document() {
       async function fetchData() {
         try {
           const [documentRes, allDocumentsRes] = await Promise.all([
-            axios.get(`/api/document/${id}`, {
+            axios.get(`${baseURL}/document/${id}`, {
               withCredentials: true,
               headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': getCookie('csrf_access_token'),
               },
             }),
-            axios.get('/api/document/getAllDocuments', {
+            axios.get(`${baseURL}/document/getAllDocuments`, {
               withCredentials: true,
               headers: {
                 'Content-Type': 'application/json',

@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
+import { baseURL } from '../utils/api';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -128,7 +129,7 @@ export default function AuthPage(props) {
     } else {
       try {
         const res = await axios.post(
-          `/api/auth/${authValue}`,
+          `${baseURL}/auth/${authValue}`,
           {
             email: formInputs.email,
             password: formInputs.password,

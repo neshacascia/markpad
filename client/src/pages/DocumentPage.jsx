@@ -7,6 +7,7 @@ import Document from '@components/document/Document';
 
 import { defaultMarkdown } from '../defaultMarkdown';
 import axios from 'axios';
+import { baseURL } from '../utils/api';
 
 export default function DocumentPage() {
   const { isLoggedIn, setIsLoggedIn, setUser } = useContext(AuthContext);
@@ -21,7 +22,7 @@ export default function DocumentPage() {
 
     async function getAllDocuments() {
       try {
-        const res = await axios.get('/api/document/getAllDocuments', {
+        const res = await axios.get(`${baseURL}/document/getAllDocuments`, {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
