@@ -87,7 +87,9 @@ export default function Document() {
     >
       {displaySidebar && <Sidebar />}
       {loadingData ? (
-        <LoadingSpinner />
+        <div className="w-screen h-screen flex justify-center items-center pb-20">
+          <LoadingSpinner />
+        </div>
       ) : (
         <section className="w-screen">
           <section

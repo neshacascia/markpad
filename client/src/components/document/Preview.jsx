@@ -47,7 +47,7 @@ export default function Preview({
         <FontAwesomeIcon
           icon={faEyeSlash}
           onClick={() => setShowPreview(false)}
-          className="md:hidden"
+          className="md:hidden hover:cursor-pointer"
         />
         <FontAwesomeIcon
           icon={showPreview ? faEyeSlash : faEye}
