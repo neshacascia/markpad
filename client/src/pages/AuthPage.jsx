@@ -208,6 +208,7 @@ export default function AuthPage(props) {
               <FontAwesomeIcon
                 icon={passwordVisibility.password ? faEyeSlash : faEye}
                 onClick={() => handleTogglePassword('password')}
+                className="hover:cursor-pointer"
               />
             </div>
             {errorMessages.password && (
@@ -235,6 +236,7 @@ export default function AuthPage(props) {
                 <FontAwesomeIcon
                   icon={passwordVisibility.confirmPassword ? faEyeSlash : faEye}
                   onClick={() => handleTogglePassword('confirmPassword')}
+                  className="hover:cursor-pointer"
                 />
               </div>
               {authValue === 'signup' && errorMessages.confirmPassword && (
@@ -262,6 +264,7 @@ export default function AuthPage(props) {
             onClick={() =>
               storeAuthValue(authValue === 'signup' ? 'login' : 'signup')
             }
+            className="text-bloodOrange"
           >
             {authValue === 'signup' ? 'Login' : 'Signup'} Now
           </Link>
