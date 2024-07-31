@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getCookie } from '../utils/cookies';
 
 import homeImg from '../../public/assets/document.svg';
+import axios from 'axios';
+import { baseURL } from '../utils/api';
 
 export default function HomePage() {
   const { storeAuthValue, setIsLoggedIn } = useContext(AuthContext);
@@ -15,6 +17,28 @@ export default function HomePage() {
       setIsLoggedIn(true);
     }
   }, []);
+
+  async function handleDemoLogin() {
+    try {
+      const res = await axios.post(
+        `${baseURL}/auth/login`,
+        {
+          email: import.meta.env.VITE_DEMO_USER_EMAIL,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      if (res.status === 200) {
+        navigate('/document');
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   return (
     <main className="bg-white w-screen h-screen flex flex-col-reverse justify-center md:flex-row md:justify-between items-center gap-4 px-10 pt-14 md:pt-[72px]">
@@ -36,13 +60,13 @@ export default function HomePage() {
           >
             Get Started
           </Link>
-          <Link
+          <button
             to="/login"
-            onClick={() => storeAuthValue('login')}
+            onClick={handleDemoLogin}
             className="text-bloodOrange border-bloodOrange font-bold border-[1px] rounded py-3 px-8"
           >
-            Login
-          </Link>
+            Explore Demo
+          </button>
         </div>
       </div>
 
