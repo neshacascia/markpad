@@ -47,9 +47,9 @@ export default function Editor({
     <section
       className={`w-screen flex flex-col px-4 ${
         showPreview ? 'hidden' : 'md:w-1/2'
-      } md:border-r-[1px] border-[#E4E4E4]`}
+      } md:border-r-[1px] border-[#E4E4E4] dark:border-[#5A6069]`}
     >
-      <div className="text-[#7C8187] bg-[#F5F5F5] flex justify-between items-center py-[14px] px-3 -mx-4">
+      <div className="text-[#7C8187] dark:text-lightGray bg-[#F5F5F5] dark:bg-[#1D1F22] flex justify-between items-center py-[14px] px-3 -mx-4">
         <span className="text-[14px] font-medium tracking-wider uppercase">
           Markdown
         </span>
@@ -65,7 +65,7 @@ export default function Editor({
         value={document.content}
         onChange={handleInputChange}
         rows={10}
-        className="text-blueGray bg-white font-markdown text-sm leading-6 py-4 resize-none overflow-hidden mb-6 focus:outline-none"
+        className="text-blueGray dark:text-lightGray bg-white dark:bg-[#151619] font-markdown text-sm leading-6 py-4 resize-none overflow-hidden mb-6 focus:outline-none"
       />
     </section>
   );

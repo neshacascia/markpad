@@ -45,11 +45,11 @@ export default function Delete() {
   }
   return (
     <Modal>
-      <div className="bg-white w-[343px] flex flex-col gap-4 rounded p-6">
-        <h2 className="text-blueGray font-robotoSlab text-xl font-bold">
+      <div className="bg-white dark:bg-[#1D1F22] w-[343px] flex flex-col gap-4 rounded p-6">
+        <h2 className="text-blueGray dark:text-white font-robotoSlab text-xl font-bold">
           Delete this document?
         </h2>
-        <p className="font-bodyGray text-sm font-robotoSlab leading-6">
+        <p className="dark:text-lightGray font-bodyGray text-sm font-robotoSlab leading-6">
           Are you sure you want to delete the {`'${document.name}'`} document
           and its contents? This action cannot be reversed.
         </p>
