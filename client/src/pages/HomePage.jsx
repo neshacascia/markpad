@@ -17,7 +17,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="w-screen h-screen flex flex-col-reverse justify-center md:flex-row md:justify-between items-center gap-4 px-10 pt-14 md:pt-[72px]">
+    <main className="bg-white w-screen h-screen flex flex-col-reverse justify-center md:flex-row md:justify-between items-center gap-4 px-10 pt-14 md:pt-[72px]">
       <div className="w-full flex flex-col items-center gap-5 md:w-3/4 md:items-start">
         <h1 className="text-2xl font-robotoSlab font-bold pb-5 md:text-4xl">
           Welcome to Markpad!

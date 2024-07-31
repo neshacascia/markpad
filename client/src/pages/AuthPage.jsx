@@ -163,7 +163,7 @@ export default function AuthPage(props) {
   }
 
   return (
-    <section className="w-screen h-screen flex justify-center items-center pt-14 md:pt-[72px]">
+    <section className="bg-white w-screen h-screen flex justify-center items-center pt-14 md:pt-[72px]">
       <div className="text-center">
         <h2 className="text-bloodOrange text-2xl font-robotoSlab font-semibold">
           {authValue === 'login' ? 'Login' : 'Create an Account'}
@@ -208,6 +208,7 @@ export default function AuthPage(props) {
               <FontAwesomeIcon
                 icon={passwordVisibility.password ? faEyeSlash : faEye}
                 onClick={() => handleTogglePassword('password')}
+                className="hover:cursor-pointer"
               />
             </div>
             {errorMessages.password && (
@@ -235,6 +236,7 @@ export default function AuthPage(props) {
                 <FontAwesomeIcon
                   icon={passwordVisibility.confirmPassword ? faEyeSlash : faEye}
                   onClick={() => handleTogglePassword('confirmPassword')}
+                  className="hover:cursor-pointer"
                 />
               </div>
               {authValue === 'signup' && errorMessages.confirmPassword && (
@@ -262,6 +264,7 @@ export default function AuthPage(props) {
             onClick={() =>
               storeAuthValue(authValue === 'signup' ? 'login' : 'signup')
             }
+            className="text-bloodOrange"
           >
             {authValue === 'signup' ? 'Login' : 'Signup'} Now
           </Link>

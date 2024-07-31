@@ -83,11 +83,13 @@ export default function Document() {
   return (
     <main
       onClick={() => setUserSettings(false)}
-      className="w-screen flex pt-14 md:pt-[72px]"
+      className="bg-white dark:bg-[#151619] w-screen flex pt-14 md:pt-[72px]"
     >
       {displaySidebar && <Sidebar />}
       {loadingData ? (
-        <LoadingSpinner />
+        <div className="w-screen h-screen flex justify-center items-center pb-20">
+          <LoadingSpinner />
+        </div>
       ) : (
         <section className="w-screen">
           <section

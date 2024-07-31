@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { DocumentContext } from '../../context/DocumentContext';
 import { UIContext } from '../../context/UIContext';
 import { Link } from 'react-router-dom';
+import ToggleThemeButton from '../ui/ToggleThemeButton';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFile } from '@fortawesome/free-solid-svg-icons';
@@ -38,24 +39,26 @@ export default function Sidebar() {
   ));
 
   return (
-    <div className="text-white bg-[#1D1F22] w-[250px] h-screen fixed left-0 top-0 bottom-0 py-7 px-6">
+    <div className="text-white bg-[#1D1F22] w-[250px] h-screen fixed left-0 top-0 bottom-0 flex flex-col items-start py-7 px-6 ">
       <span className="font-title text-[15px] tracking-[8px] uppercase lg:hidden">
         Markpad
       </span>
 
-      <div className="flex flex-col lg:-mt-7">
+      <div className="w-full flex flex-col lg:-mt-7 mb-auto">
         <span className="text-bodyGray text-sm tracking-widest uppercase py-7">
           My Documents
         </span>
         <button
           onClick={createNewDocument}
-          className="bg-bloodOrange text-[15px] rounded py-3 hover:bg-orangeHover"
+          className="bg-bloodOrange text-[15px] w-full rounded py-3 hover:bg-orangeHover"
         >
           + New Document
         </button>
 
         <ul className="flex flex-col gap-7 py-7">{documentList}</ul>
       </div>
+
+      <ToggleThemeButton />
     </div>
   );
 }
