@@ -7,7 +7,7 @@ function DocumentContextProvider(props) {
     name: '',
     content: '',
   });
-  const [allDocuments, setAllDocuments] = useState();
+  const [allDocuments, setAllDocuments] = useState(null);
   const [isDocumentUpdated, setIsDocumentUpdated] = useState();
 
   return (

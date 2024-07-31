@@ -8,7 +8,7 @@ import { getCookie } from '../../utils/cookies';
 import { defaultMarkdown } from '../../defaultMarkdown';
 import { baseURL } from '../../utils/api';
 
-export default function Delete() {
+export default function Delete({ isDocumentUpdated }) {
   const { document, allDocuments, setDocument } = useContext(DocumentContext);
   const { closeModal } = useContext(UIContext);
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ export default function Delete() {
         }
       );
       console.log(res);
-
+      isDocumentUpdated(true);
       closeModal();
 
       if (allDocuments.length === 1) {

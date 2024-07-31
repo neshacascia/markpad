@@ -13,8 +13,6 @@ export default function DocumentPage() {
   const { isLoggedIn, setIsLoggedIn, setUser } = useContext(AuthContext);
   const { setDocument, setAllDocuments } = useContext(DocumentContext);
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     if (getCookie('csrf_access_token')) {
       setIsLoggedIn(true);
@@ -35,7 +33,7 @@ export default function DocumentPage() {
         setUser(user);
 
         if (documents?.length > 0) {
-          navigate(`/document/${documents[0].id}`);
+          setDocument(documents[0]);
         } else {
           setDocument(defaultMarkdown);
         }
