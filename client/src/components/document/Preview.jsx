@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { UIContext } from '../../context/UIContext';
 import Markdown from 'react-markdown';
 import html2pdf from 'html2pdf.js';
 
@@ -14,6 +16,8 @@ export default function Preview({
   showPreview,
   setShowPreview,
 }) {
+  const { setIsDarkMode } = useContext(UIContext);
+
   function downloadAsPDF() {
     const element = window.document.getElementById('preview-content');
     const opt = {
@@ -38,7 +42,10 @@ export default function Preview({
           Preview
         </span>
         <button
-          onClick={downloadAsPDF}
+          onClick={() => {
+            setIsDarkMode(false);
+            downloadAsPDF();
+          }}
           className="flex items-center gap-2 border-[1px] rounded px-3 py-[1px] hover:border-gray-600 hover:text-gray-600 dark:hover:border-gray-400 dark:hover:text-gray-400"
         >
           <FontAwesomeIcon icon={faFileArrowDown} />
