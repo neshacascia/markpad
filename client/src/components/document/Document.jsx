@@ -131,7 +131,9 @@ export default function Document() {
           </section>
         </section>
       )}
-      {ModalComponent && <ModalComponent />}
+      {ModalComponent && (
+        <ModalComponent isDocumentUpdated={isDocumentUpdated} />
+      )}
     </main>
   );
 }
