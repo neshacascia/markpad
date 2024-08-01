@@ -78,6 +78,7 @@ export default function Navbar() {
         );
 
         console.log(res);
+        setIsDocumentUpdated(true);
       } else {
         const documentData = {
           createdAt: formattedDate,
